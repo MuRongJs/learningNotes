@@ -33,8 +33,23 @@
 	3、git commit就可以一次性把暂存区的所有修改提交到分支。
 
 **如果不用git add到暂存区，那就不会加入到commit中**
-## 撤销修改 ##
+##4、撤销修改 ##
 1. 当你改乱了本地工作区某个文件内容时，想直接丢弃工作区的修改时，用命令**git checkout --file**
 2. 当你改乱了本地工作区某文件内容并还添加到了暂存区，想要丢弃，分两步：
 
-	1、用命令**git reset HEAD (file)**
+	用命令**git reset HEAD (file)**,返回到场景1，再按1操作
+3. 已经提交了不合适的修改到版本库时，想要撤销本次提交，**参考版本回退**一节，不过前提是没有推送到远程库.
+## 5、删除文件 ##
+1. 如果你用的rm删除文件，也就是只是删除了工作区的文件，如果想恢复，也就是从版本库档一份，最新，删除的文件下来。**git checkout --file**(撤销)
+2. 如果用的是**git rm**删除文件，就相当于删除了文件并添加到了暂存区，需要先**git reset HEAD （file）**，然后再**git checkout -- (file)**
+3. 如果你想彻底把版本库的删除掉，先git rm，再git commit
+
+## 6、远程仓库 ##
+[远程仓库的概念](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374385852170d9c7adf13c30429b9660d0eb689dd43a000)
+## 7、添加远程库 ##
+1、要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+
+关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
+
+2、使用命令git push origin master推送最新修改；
+
