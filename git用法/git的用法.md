@@ -68,5 +68,33 @@
 4. 创建并切换分支：**git branch -b (name)**
 5. 合并某分支到当前分支：**git merge (name)**
 6. 删除分支：**git branch -d (name)**
-## 解决冲突 ##
+##2、解决冲突 ##
 [分支冲突合并](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840202368c74be33fbd884e71b570f2cc3c0d1dcf000)
+## 3、分支管理策略 ##
+1. 合并分支时使用ff模式时，直接将master指针指向了dev分支的最新提交，这两个分支的最新提交的commit ID就是一样的
+2. 如果采用**--no-ff**模式合并分支时，由于不能将master只能指向dev分支的最新提交，master要进行提交操作，就会使commit id不同。
+3. 用 **git stash**可以将当前分支的现场"存储"起来。使用**git stash apply**恢复、**git stash drop**删除、**git stash pop**恢复和删除。**git stash list**当前分支的存储list
+4. 分支强制删除**git branch -D （name）**
+5. 查看远程库信息 **git remote -v**
+6. 在本地创建和远程分支对应的分支**git checkout -b branch-name origin/branch-name**
+7. 建立本地分支和远程分支的关联**git branch --set-upstream branch-name origin/branch-name**
+8. 从本地推送分支**git push origin branch-name**
+9. 从远程抓取分支**git pull**（推送前先pull）
+## 4、标签 ##
+**概念：**tag就是一个让人容易记住的有意义的名字，它跟某个commit绑在一起。
+
+1. 新建一个标签**git tag （tagname）***命令git tag （tagname）用于新建一个标签，默认为HEAD，也可以指定一个commit id。*
+2. 指定标签信息**git tag -a （tagname） -m （description） （branchname） or commit_id**
+3. PGP签名标签**git tag -s （tagname） -m （description） （branchname） or commit_id**
+4. 查看所有标签**git tag**
+5. 推送全部未推送过的本地标签**git push origin --tags**
+6. 删除一个本地标签**git tag -d （tagname）**
+7. 删除一个远程标签**git push origin :refs/tags/（tagname）**
+8. 推送一个本地标签**git push origin （tagname）**
+# git指令速查表 #
+![](http://upload-images.jianshu.io/upload_images/1132519-1a9c988ece3d49c6.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+![](http://upload-images.jianshu.io/upload_images/1132519-c0ddee9989b72d4c.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240)
+
+2018/9/26 22:34:48 
+
+----------
