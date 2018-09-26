@@ -22,15 +22,17 @@
 **git log**。查看提交历史，以便确定要回退到哪个版本。
 **git reflog**查看命令历史，以便确定要回到未来的哪个版本。
 ##3、工作区和版本库 ##
+![](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907720458e56751df1c474485b697575073c40ae9000/0)	
+
+> 1、工作区与版本库结构图。
 ![](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907720458e56751df1c474485b697575073c40ae9000/0)
 
-	1、工作区与版本库结构图。
-![](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907720458e56751df1c474485b697575073c40ae9000/0)
+	
 
-	2、git add把要提交的所有修改放到暂存区（Stage）。
+> 2、git add把要提交的所有修改放到暂存区（Stage）。
 ![](https://cdn.liaoxuefeng.com/cdn/files/attachments/0013849077337835a877df2d26742b88dd7f56a6ace3ecf000/0)
 
-	3、git commit就可以一次性把暂存区的所有修改提交到分支。
+> 3、git commit就可以一次性把暂存区的所有修改提交到分支。
 
 **如果不用git add到暂存区，那就不会加入到commit中**
 ##4、撤销修改 ##
@@ -47,9 +49,8 @@
 ## 6、远程仓库 ##
 [远程仓库的概念](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001374385852170d9c7adf13c30429b9660d0eb689dd43a000)
 ## 7、添加远程库 ##
-1、要关联一个远程库，使用命令git remote add origin git@server-name:path/repo-name.git；
+1、关联一个远程库，使用 **git remote add origin git@server-name:path/repo-name.git**
+关联后，使用命令**git push -u origin master**来推送本地master分支内容，可以让本地master分支和远程master分支关联起来。
 
-关联后，使用命令git push -u origin master第一次推送master分支的所有内容；
-
-2、使用命令git push origin master推送最新修改；
+2、本地和远程master关联后，推送简化的命令为**git push origin master**；
 
