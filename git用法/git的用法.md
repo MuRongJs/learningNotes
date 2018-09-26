@@ -68,3 +68,5 @@
 4. 创建并切换分支：**git branch -b (name)**
 5. 合并某分支到当前分支：**git merge (name)**
 6. 删除分支：**git branch -d (name)**
+## 解决冲突 ##
+[分支有冲突](https://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/001375840202368c74be33fbd884e71b570f2cc3c0d1dcf000)
