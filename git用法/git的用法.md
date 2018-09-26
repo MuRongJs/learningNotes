@@ -53,4 +53,18 @@
 关联后，使用命令**git push -u origin master**来推送本地master分支内容，可以让本地master分支和远程master分支关联起来。
 
 2、本地和远程master关联后，推送简化的命令为**git push origin master**；
+## 8、从远程库克隆 ##
+1、**git clone**
 
+2018/9/25 16:36:31 
+
+----------
+
+# 分支管理 #
+## 1、创建与合并分支 ##
+1. 查看分支：**git branch**
+2. 创建新分支：**git branch (name)**
+3. 切换分支：**git checkout (name)**
+4. 创建并切换分支：**git branch -b (name)**
+5. 合并某分支到当前分支：**git merge (name)**
+6. 删除分支：**git branch -d (name)**
