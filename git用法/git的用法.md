@@ -24,15 +24,15 @@
 ##3、工作区和版本库 ##
 ![](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907720458e56751df1c474485b697575073c40ae9000/0)	
 
-> 1、工作区与版本库结构图。
+1、工作区与版本库结构图。
 ![](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907720458e56751df1c474485b697575073c40ae9000/0)
 
 	
 
-> 2、git add把要提交的所有修改放到暂存区（Stage）。
+2、git add把要提交的所有修改放到暂存区（Stage）。
 ![](https://cdn.liaoxuefeng.com/cdn/files/attachments/0013849077337835a877df2d26742b88dd7f56a6ace3ecf000/0)
 
-> 3、git commit就可以一次性把暂存区的所有修改提交到分支。
+3、git commit就可以一次性把暂存区的所有修改提交到分支。
 
 **如果不用git add到暂存区，那就不会加入到commit中**
 ##4、撤销修改 ##
