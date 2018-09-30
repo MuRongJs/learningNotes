@@ -24,7 +24,7 @@
 ##3、工作区和版本库 ##
 ![](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907720458e56751df1c474485b697575073c40ae9000/0)	
 
-1、工作区与版本库结构图。
+1、工作区与版本库的结构图。
 ![](https://cdn.liaoxuefeng.com/cdn/files/attachments/001384907720458e56751df1c474485b697575073c40ae9000/0)
 
 	
