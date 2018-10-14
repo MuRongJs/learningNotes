@@ -32,4 +32,29 @@
 	1.4 Node.prototype.textContent : 返回当前节点和它的所有后代节点的文本内容。(自动对 HTML 标签转义)
 	1.5 Node.prototype.baseURI : 返回当前网页的绝对路径。
 		该属性的值一般由当前网址的 URL（即window.location属性）决定，但是可以使用 HTML 的<base>标签，改变该属性的值。设置了以后，baseURI属性就返回<base>标签设置的值。
-	
+	1.6 Node.prototype.ownerDocument : 返回当前节点的Document对象
+	1.7 Node.prototype.nextSibling ： 返回当前节点后面的第一个同级节点	
+	1.8 Node.prototype.previousSibling : 返回当前节点前面的、距离最近的一个同级节点。(包括文本节点和注释节点)
+	1.9 Node.prototype.parentNode : 返回当前节点的父节点。
+	1.10 Node.prototype.parentElement : 返回当前节点的父元素节点。
+	1.11 Node.prototype.firstChild,Node.prototype.lastChild : 返回当前节点的第一个子节点，返回当前节点的最后一个子节点。
+	1.12 Node.prototype.childNodes : childNodes属性返回一个类似数组的对象（NodeList集合），成员包括当前节点的所有子节点。
+	1.13 Node.prototype.isConnected : 返回一个布尔值，表示当前节点是否在文档中。
+## 2、方法 ##
+	2.1 Node.prototype.appendChild() : 接受一个节点对象作为参数，将其作为最后一个子节点，插入当前节点。该方法的返回值就是插入文档的子节点。
+	2.2 Node.prototype.hasChildNodes() : 判断是否有**子节点**
+	2.3 Node.prototype.cloneNode() : 接受一个布尔值作为参数，表示是否同时克隆子节点。它的返回值是一个克隆出来的新节点。
+	2.4 Node.prototype.insertBefore() : 受两个参数，第一个参数是所要插入的节点newNode，第二个参数是父节点parentNode内部的一个子节点referenceNode。
+	newNode将插在referenceNode这个子节点的前面。
+	2.5 Node.prototype.removeChild() : 当前节点移除该子节点
+	2.6 Node.prototype.replaceChild() : 将一个新的节点，替换当前节点的某一个子节点。
+	2.7 Node.prototype.contains() : 参数节点为当前节点、当前节点的子节点、当前节点的后代节点，返回布尔值。
+	2.8 Node.prototype.compareDocumentPosition() : 返回当前节点的关系。 
+	2.9 Node.prototype.isEqualNode()，Node.prototype.isSameNode() : isEqualNode方法返回一个布尔值，用于检查两个节点是否相等。
+	isSameNode方法返回一个布尔值，表示两个节点是否为同一个节点。
+	2.10 Node.prototype.normalize() 
+	2.11 Node.prototype.getRootNode() : 与ownerDocument属性的作用相同。
+
+----------
+
+#  #
