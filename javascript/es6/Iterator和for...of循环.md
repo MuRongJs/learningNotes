@@ -13,4 +13,13 @@
 Iterator 只是把接口规格加到数据结构之上，所以，遍历器与它所遍历的那个数据结构，实际上是分开的，完全可以写出没有对应数据结构的遍历器对象，或者说用遍历器对象模拟出数据结构。
 
 ----------
-# 默认Iterator #
+#2、 默认Iterator #
+原生具有Iterator接口的数据结构如下：
+
+	1.Array
+	2.Map
+	3.Set
+	4.String
+	5.TypedArray
+	6.函数的arguments对象
+	7.NodeList对象
