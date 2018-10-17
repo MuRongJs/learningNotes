@@ -14,6 +14,7 @@ Iterator 只是把接口规格加到数据结构之上，所以，遍历器与�
 
 ----------
 #2、 默认Iterator #
+
 原生具有Iterator接口的数据结构如下：
 
 	1.Array
@@ -23,3 +24,47 @@ Iterator 只是把接口规格加到数据结构之上，所以，遍历器与�
 	5.TypedArray
 	6.函数的arguments对象
 	7.NodeList对象
+不具备Iterator接口的只要在Symbol.iterator的属性上部署遍历器生成方法（原型链上的对象具有该方法也可）。
+
+for...of遍历有Iterator接口对象时，首先	会先返回一个遍历对象，对象有next方法。
+<pre>
+例一：
+	const obj = {
+	  [Symbol.iterator] : function () {
+	    return {
+	      next: function () {
+	        return {
+	          value: 1,
+	          done: true
+	        };
+	      }
+	    };
+	  }
+	};
+例二：
+	class RangeIterator {
+	  constructor(start, stop) {
+	    this.value = start;
+	    this.stop = stop;
+	  }
+	
+	  [Symbol.iterator]() { return this; }
+	
+	  next() {
+	    var value = this.value;
+	    if (value < this.stop) {
+	      this.value++;
+	      return {done: false, value: value};
+	    }
+	    return {done: true, value: undefined};
+	  }
+	}
+	
+	function range(start, stop) {
+	  return new RangeIterator(start, stop);
+	}
+	
+	for (var value of range(0, 3)) {
+	  console.log(value); // 0, 1, 2
+	}
+</pre>
