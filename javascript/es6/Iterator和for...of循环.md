@@ -68,3 +68,5 @@ for...of遍历有Iterator接口对象时，首先	会先返回一个遍历对象
 	  console.log(value); // 0, 1, 2
 	}
 </pre>
+# 3、调用Iterator接口的场合 #
+## 1、解构赋值 ##
