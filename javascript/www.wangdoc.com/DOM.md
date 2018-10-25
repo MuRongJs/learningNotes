@@ -163,3 +163,9 @@ HTMLCollection实例是类似数组的对象，所以这些属性都有length属
 	1、DOMImplementation.createDocument()：创建一个 XML 文档。
 	2、DOMImplementation.createHTMLDocument()：创建一个 HTML 文档。
 	3、DOMImplementation.createDocumentType()：创建一个 DocumentType 对象。
+## 3、方法 ##
+### 3.1 document.open() , document.close() ###
+document.open方法清除当前文档所有内容，使得文档处于可写状态，供document.write方法写入内容。
+
+document.close方法用来关闭document.open()打开的文档。
+### 3.2 document.write() , document.writeIn() ###
