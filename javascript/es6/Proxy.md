@@ -38,7 +38,54 @@ Proxy对象支持一共13种拦截操作：
 	13.construct(target, args)：拦截 Proxy 实例作为构造函数调用的操作，比如new proxy(...args)。
 	
 # 2、Proxy实例的方法 #
-### get() ###
+### [get()](http://es6.ruanyifeng.com/#docs/proxy#get) ###
+get用于拦截某个属性的读取操作，接受三个参数：目标对象，属性名、Proxy实例本身。
+### [set()](http://es6.ruanyifeng.com/#docs/proxy#set) ###
+set用于拦截某个属性的赋值操作，接受四个参数：目标对象、属性名、属性值、Proxy实例本身。
+<pre>
+const handler = {
+  set: function(obj, prop, value, receiver) {
+    obj[prop] = receiver;
+  }
+};
+const proxy = new Proxy({}, handler);
+const myObj = {};
+Object.setPrototypeOf(myObj, proxy);
+
+myObj.foo = 'bar';
+myObj.foo === myObj // true
+</pre>
+**目标对象自身的某个属性，不可写且不可配置，那么set方法将不起作用。**
+### [apply()](http://es6.ruanyifeng.com/#docs/proxy#apply) ###
+apply方法拦截函数的调用、call和apply操作;接受三个参数：目标对象、目标对象的上下文对象（this）、目标对象的参数数组。
+<pre>
+var twice = {
+  apply (target, ctx, args) {
+    return Reflect.apply(...arguments) * 2;
+  }
+};
+function sum (left, right) {
+  return left + right;
+};
+var proxy = new Proxy(sum, twice);
+proxy(1, 2) // 6
+proxy.call(null, 5, 6) // 22
+proxy.apply(null, [7, 8]) // 30
+</pre>
+### [has()](http://es6.ruanyifeng.com/#docs/proxy#has) ###
+has方法用来拦截HasProperty操作，即判断对象是否具有某个属性时，这个方法会生效。典型的操作就是in运算符。接受两个参数：目标对象，属性名
+
+**目标对象是禁止扩展的，使用has拦截会报错**
+### [construct()](http://es6.ruanyifeng.com/#docs/proxy#construct) ###
+construct方法用于拦截new命令。可以接受两个参数：目标对象、构造函数的参数对象。
+
+**construct方法返回的必须是一个对象，否则会报错**
+### [deleteProperty()](http://es6.ruanyifeng.com/#docs/proxy#deleteProperty) ###
+deleteProperty用于拦截delete操作。
+
+**目标对象不可配置的属性，不能被deleteProperty方法删除。**
+### [defineProperty()](http://es6.ruanyifeng.com/#docs/proxy#defineProperty) ###
+defineProperty方法拦截了Object.defineProperty操作。
 # 3、Proxy.revocable() #
 <pre>
 let target = {};
