@@ -86,6 +86,29 @@ deleteProperty用于拦截delete操作。
 **目标对象不可配置的属性，不能被deleteProperty方法删除。**
 ### [defineProperty()](http://es6.ruanyifeng.com/#docs/proxy#defineProperty) ###
 defineProperty方法拦截了Object.defineProperty操作。
+### [getOwnPropertyDscriptor()](http://es6.ruanyifeng.com/#docs/proxy#getOwnPropertyDescriptor) ###
+getOwnPropertyDescriptor方法拦截Object.getOwnPropertyDescriptor()，返回一个属性描述对象或者undefined。
+### [getPrototypeOf()](http://es6.ruanyifeng.com/#docs/proxy#getPrototypeOf) ###
+getPrototypeOf方法主要用来拦截获取对象原型。具体拦截以下操作：
+
+	1.Object.prototype.__proto__
+	2.Object.prototype.isPrototypeOf()
+	3.Object.getPrototypeOf()
+	4.Reflect.getPrototypeOf()
+	5.instanceof
+### [isExtensible()](http://es6.ruanyifeng.com/#docs/proxy#isExtensible) ###
+isExtensible方法拦截Object.isExtensible操作。
+### [ownKeys()](http://es6.ruanyifeng.com/#docs/proxy#ownKeys) ###
+ownKeys方法用来拦截对象自身属性的读取操作。具体操作为：
+
+	1.Object.getOwnPropertyNames()
+	2.Object.getOwnPropertySymbols()
+	3.Object.keys()
+	4.for...in循环
+### [preventExtensions()](http://es6.ruanyifeng.com/#docs/proxy#preventExtensions) ###
+preventExtensions方法拦截Object.preventExtensions()。
+### [setPrototypeOf()](http://es6.ruanyifeng.com/#docs/proxy#setPrototypeOf) ###
+setPrototypeOf方法主要用来拦截Object.setPrototypeOf方法。
 # 3、Proxy.revocable() #
 <pre>
 let target = {};
@@ -102,4 +125,6 @@ proxy.foo // TypeError: Revoked
 Proxy.revocable方法返回一个对象，该对象的proxy属性是Proxy实例，revoke属性是一个函数，可以取消Proxy实例。
 
 Proxy.revocable的一个使用场景是，目标对象不允许直接访问，必须通过代理访问，一旦访问结束，就收回代理权，不允许再次访问。
-# this问题 #
+# [4、this问题](http://es6.ruanyifeng.com/#docs/proxy#this-%E9%97%AE%E9%A2%98) #
+this关键字会指向 Proxy 代理(Proxy实例)。
+# [5、实例：Web 服务的客户](http://es6.ruanyifeng.com/#docs/proxy#%E5%AE%9E%E4%BE%8B%EF%BC%9AWeb-%E6%9C%8D%E5%8A%A1%E7%9A%84%E5%AE%A2%E6%88%B7%E7%AB%AF) #
