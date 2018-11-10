@@ -46,5 +46,29 @@ Function.Prototype.apply.call(func, thisArg, args)可以分解成以下步骤：
 2. 再执行func.apply(thisArg, args);
 ### Reflect.defineProperty(target, propertyKey, attributes) ###
 Reflect.defineProperty 等同于 Object.defineProperty,用来为对象定义属性。
-### Reflect.getOwnPropertyDescriptor(target, propertyKey) ###
-Reflect.getOwnPropertyDescriptor基本等同于Object.getOwnPropertyDescriptor
+### Reflect.getOwnPropertyDescirptor(target, propertyKey) ###
+Reflect.getOwnPropertyDescriptor和Object.getOwnPropertyDescriptor都是用来得到指定属性的描述对象。
+### Reflect.isExtensible(target) ###
+Reflect.isExtensible方法对应Object.isExtensible,返回一个布尔值，表示当前对象是否可拓展。
+### Reflect.preventExtensions(target) ###
+Reflect.preventExtensions 对应 Object.preventExtensions方法，用来让对象变为不可拓展。返回一个布尔值，表示操作是否成功。
+### Reflect.ownKeys(target) ###
+Reflect.ownKeys(target)返回对象的所用属性，等同于Object.getOwnPropertyNames与Object.getOwnPeopertySymbols之和。
+# [3.实例：使用 Proxy 实现观察者模式](http://es6.ruanyifeng.com/#docs/reflect#实例：使用-Proxy-实现观察者模式) #
+观察者模式指的的是函数自动观察数据对象，对象一有变化，函数就会自动执行。
+<pre>
+var obj = {
+	name:"murong",
+	age:24
+}
+function observer(val){
+	console.log(val);
+}
+var observable = obj =>new Proxy(obj , {
+	set:function(target, name, val, receiver){
+		var o = Reflect.set(target, name, val, receiver);
+		observer(val);
+		return o;
+	}
+})
+</pre>
