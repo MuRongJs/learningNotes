@@ -69,4 +69,43 @@ for...of遍历有Iterator接口对象时，首先	会先返回一个遍历对象
 	}
 </pre>
 # 3、调用Iterator接口的场合 #
-## 1、解构赋值 ##
+(1. 解构赋值
+
+(2. 扩展运算符（...)可以将任何具有Iterator接口的数据结构转为数组 ： var str="asdfgh"; [...str];	//["a", "s", "d", "f", "g", "h"]
+
+(3. yield*
+<pre>
+var iterator = function*(){
+	yield 1;
+	yield* [2,3,4];
+}
+</pre>
+(4. 其他场合：任何接受数组的参数的场合，都调用了遍历接口。
+	
+	for...of
+	Array.from()
+	Map()、Set()、WeakMap()、WeakSet()
+	Promise.all()
+	Promise.race()
+# [4、字符串的Iterator接口](http://es6.ruanyifeng.com/#docs/iterator#%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%9A%84-Iterator-%E6%8E%A5%E5%8F%A3) #
+# 5、Iterator接口与Generator函数 #
+用Generator函数实现一个有Iterator接口的对象。
+<pre>
+var myIterator = {
+	[Symbol.iterator]:function* (){
+		yield:1;
+		yield:2;
+		yield:3;
+		yield:4;
+	}
+}
+//等同于
+var myIterator = {
+	* [Symbol.iterator](){
+		yield 'hello';
+    	yield 'world';
+	}
+}
+</pre>
+Generator函数执行，产生一个有Iterator接口的对象。
+# 6、遍历器对象的 return(),throw() #
