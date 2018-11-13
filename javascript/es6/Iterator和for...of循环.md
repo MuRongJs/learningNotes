@@ -108,4 +108,18 @@ var myIterator = {
 }
 </pre>
 Generator函数执行，产生一个有Iterator接口的对象。
-# 6、遍历器对象的 return(),throw() #
+# [6、遍历器对象的 return(),throw()](http://es6.ruanyifeng.com/#docs/iterator#%E9%81%8D%E5%8E%86%E5%99%A8%E5%AF%B9%E8%B1%A1%E7%9A%84-return%EF%BC%8Cthrow) #
+return方法主要在for...of循环中提前退出（出错，break语句）的时候调用。如果在对象完成遍历前，需要清理或释放资源，就可以部署return方法。
+
+**return方法必须返回一个对象**
+# 7、for...of循环 #
+用来遍历所有数据结构的统一方法。数据结构只要部署了[Symbol.iterator]属性，就视为有Iterator接口，就可以用for...of来遍历。for...of遍历的数据结构就是遍历[Symbol.iterator]返回的对象。
+
+for...of循环可以使用的范围包括数组、Set 和 Map 结构、某些类似数组的对象（比如arguments对象、DOM NodeList 对象）、后文的 Generator 对象，以及字符串。
+
+### 数组 ###
+数组情况下：
+
+for...in循环，只能获取键名，不能获取到键值。for...of循环直接遍历可得到键值（如果要得到键名借助数组实例的entries方法和keys方法）
+
+for...of循环调用遍历器接口，数组的遍历器接口只返回具有数字索引的属性。这一点跟for...in循环也不一样。
