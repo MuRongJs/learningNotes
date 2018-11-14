@@ -19,13 +19,13 @@ Generator中的next方法运行步骤：
  Generator函数执行只会返回一个可以遍历的对象，但是不会不会执行内部的代码。
  
  **注意：1、yield表达式只能在Generator函数内部使用。2、如果需要在另一个表达式用到yield表达式，必须带圆括号**
- ### 与Iterator接口的关系 ###
+### 与Iterator接口的关系 ###
  有[Symbol.iterator]方法的对象，该方法是对象的遍历器生成函数，该方法会返回该对象的遍历对象。
  
  Generator函数也是遍历器生成函数，因此将Generator函数赋值给对象的[Symbol.iterator]属性，对象就会具有iterator接口。
  
  **Generatro函数执行会返回一个可遍历的对象，该对象有[Symbol.iterator]接口，执行[Symbol.iterator]方法的时候会返回自己本身**
- # 2、next方法的参数 #
+# 2、next方法的参数 #
  yield表达式本身没有返回值（返回undefined），如果在next中传入参数，这个参数可以当成上个yield表达式的返回值（第一个next参数被忽略）。
  
  **Generator函数从暂停状态到恢复运行，它的上下文（context）不变，通过next方法参数，可以在Generator函数不同阶段注入不同的值，进而调整函数行为**
@@ -42,7 +42,7 @@ Generator中的next方法运行步骤：
  g.next('2');//second2
  g.next();//end
  </pre>
- # 3、for...of循环 #
+# 3、for...of循环 #
  自动遍历Generator函数生成的遍历对象，不需要调用next方法。
  
  遍历一个没有iterator接口的普通对象：
@@ -75,7 +75,7 @@ Generator中的next方法运行步骤：
  
  jane[Symbol.iterator] = objectEntries;
  </pre>
- # [4、Generator.prototype.throw()](http://es6.ruanyifeng.com/#docs/generator#Generator-prototype-throw) #
+# [4、Generator.prototype.throw()](http://es6.ruanyifeng.com/#docs/generator#Generator-prototype-throw) #
  Generator函数返回的遍历器对象，有一个throw方法，可以在函数体外抛出错，在Generator函数体内捕获。
  
  如果 Generator 函数内部和外部，都没有部署try...catch代码块，那么程序将报错，直接中断执行。
@@ -85,7 +85,7 @@ Generator中的next方法运行步骤：
  throw方法被捕获以后，会附带执行下一条yield表达式。也就是说，会附带执行一次next方法。
  
  一旦 Generator 执行过程中抛出错误，且没有被内部捕获，就不会再执行下去了。如果此后还调用next方法，将返回一个value属性等于undefined、done属性等于true的对象，即 JavaScript 引擎认为这个 Generator 已经运行结束了。
- # 5、Generator.prototype.return() #
+# 5、Generator.prototype.return() #
  Generator 函数返回的遍历器对象，还有一个return方法，可以返回给定的值，并且终结遍历 Generator 函数。
  
  如果 Generator 函数内部有try...finally代码块，那么return方法会推迟到finally代码块执行完再执行。
