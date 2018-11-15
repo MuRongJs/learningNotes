@@ -231,4 +231,57 @@ function request(url) {
 var it = main();
 it.next();
 </pre>
-### (2)控制流管理 ###
+### [(2)控制流管理](http://es6.ruanyifeng.com/#docs/generator#%EF%BC%882%EF%BC%89%E6%8E%A7%E5%88%B6%E6%B5%81%E7%AE%A1%E7%90%86) ###
+**同步执行下的控制流管理，例如：**
+<pre>
+function step1(){
+    return "第一步：返回值可以传递给下一步";
+}
+function step2(){
+    return "第二步：返回值可以传递给下一步";
+}
+function step3(){
+    return "第三步：返回值可以传递给下一步";
+}
+function step4(){
+    return "第四步：返回值可以传递给下一步";
+}
+//例一
+function* gen(){
+    var res1 = yield step1();
+    console.log(res1);
+    var res2 = yield step2();
+    console.log(res2);
+    var res3 = yield step3();
+    console.log(res3);
+    var res4 = yield step4();
+    console.log(res4);
+}
+function runGen(genFunRes){
+    var iterRes = genFunRes.next(genFunRes.value);//genFunRes.value 是Generator函数产生的迭代器对象，用户自定义的value值。
+    if(!iterRes.done){
+        genFunRes.value = iterRes.value;//iterRes.value 是迭代器对象next方法产生的对象。
+        return runGen(genFunRes);
+    }else{
+        return;
+    }
+}
+</pre>
+### (3)部署Iterator接口 ###
+### (4)作为数据结构 ### 
+Generator可以看作是数据结构，准确的说是数组结构，它返回的值可以提供类似数据的接口。
+<pre>
+function* doStuff() {
+  yield fs.readFile.bind(null, 'hello.txt');
+  yield fs.readFile.bind(null, 'world.txt');
+  yield fs.readFile.bind(null, 'and-such.txt');
+}
+//上面的写法可以用数组模拟
+function doStuff() {
+  return [
+    fs.readFile.bind(null, 'hello.txt'),
+    fs.readFile.bind(null, 'world.txt'),
+    fs.readFile.bind(null, 'and-such.txt')
+  ];
+}
+</pre>
