@@ -109,6 +109,92 @@ export default function publish(topic, channel) {
 }
 </pre>
 上面代码定义了一个名为publish的修饰器，它通过改写descriptor.value，使得原方法被调用时，会自动发出一个事件。它使用的事件“发布/订阅”库是[Postal.js](https://github.com/postaljs/postal.js)。
-# 6、Mixin #
+# [6、Mixin](http://es6.ruanyifeng.com/#docs/decorator#Mixin) #
 在修饰器的基础上，可以实现Mixin模式。所谓Mixin模式，就是对象继承的一种替代方案，中文译为“混入”（mix in），意为在一个对象之中混入另外一个对象的方法。
+
+Mixin是一种概念
+
+混入可以使用：
+
+    1.Object.assign(target , source),将要混入的对象，混入到目的对象。
+    2.修饰符进行混入，利用Object.assign和高级函数的形式给类的原型对象进行混入。
+    3.可以用类的继承方式(继承方式是将类的原型的原型指向父类的原型上)混入,可以在混入类中调用父类。例如：
+<pre>
+class b{
+	b(){
+		console.log("b");
+	}
+}
+class c{
+	c(){
+		console.log("c");
+	}
+}
+class d{
+	d(){
+		console.log("d");
+	}
+}
+class e{
+	e(){
+		console.log("e");
+	}
+}
+var mixinE = (superClass) => class extends superClass{
+ 	e(){
+ 		console.log("e");
+ 	}
+ };
+ var mixinD = (superClass) => class extends superClass{
+ 	d(){
+ 		console.log("d");
+ 	}
+ };
+ var mixinC = (superClass) => class extends superClass{
+ 	c(){
+ 		console.log("c");
+ 	}
+ };
+ var mixinB = (superClass) => class extends superClass{
+ 	b(){
+ 		console.log("b");
+ 	}
+ };
+ class f extends mixinB(mixinC(mixinD(e))){
+ 	f(){
+ 		console.log("f")
+ 	}
+ }
+ var f1 = new f();
+ 
+</pre>
+# [7、Trait](http://es6.ruanyifeng.com/#docs/decorator#Trait) #
+**[traits-decorator](https://github.com/CocktailJS/traits-decorator)**
+
+Trait是一个第三方的模块，效果和Mixin类似，它能防止同名方法的通途、排除混入某些方法、为混入的方法起别名等。它能接受对象，也可以接受es6的类。
+<pre>
+import { traits, alias } from 'traits-decorator';
+
+class TFoo {
+  foo() { console.log('foo') }
+}
+
+const TBar = {
+  bar() { console.log('bar') },
+  foo() { console.log('foo') }
+};
+
+@traits(TFoo, TBar::alias({foo: 'aliasFoo'}))
+class MyClass { }
+
+let obj = new MyClass();
+obj.foo() // foo
+obj.aliasFoo() // foo
+obj.bar() // bar
+//也可以组合写    
+@traits(TExample::excludes('foo','bar')::alias({baz:'exampleBaz'}))
+class MyClass {}
+</pre>
+# [8、Babel转码器支持Decorator](http://es6.ruanyifeng.com/#docs/decorator#Babel-%E8%BD%AC%E7%A0%81%E5%99%A8%E7%9A%84%E6%94%AF%E6%8C%81) #
+
 
