@@ -56,5 +56,36 @@ chainResult函数的作用犹如JQuery返回的this。
 
 **链式调用调用的时_.prototype对象上的方法**
 
-#
+#cb、optimizeCb 函数。
+cb函数源码：
 
+    var cb = function(value, context, argCount) {
+        if (_.iteratee !== builtinIteratee) return _.iteratee(value, context);
+        if (value == null) return _.identity;
+        if (_.isFunction(value)) return optimizeCb(value, context, argCount);
+        if (_.isObject(value) && !_.isArray(value)) return _.matcher(value);
+        return _.property(value);
+     };
+value：function、object、基本类型。
+
+context：执行cd回调函数的上下文。
+
+argCount：optimizeCb函数中的不同情况处理。
+
+    if (_.iteratee !== builtinIteratee) return _.iteratee(value, context);
+    
+    _.iteratee = builtinIteratee = function(value, context) {
+        return cb(value, context, Infinity);
+      };
+_.iteratee函数被自定义时，直接返回自定义的函数。
+
+    if (value == null) return _.identity;
+    
+    _.identity = function(value) {
+        return value;
+    };
+当value为null时返回直接返回_.identity函数。
+
+    if (_.isFunction(value)) return optimizeCb(value, context, argCount);
+    
+    
