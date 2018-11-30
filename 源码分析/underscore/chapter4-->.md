@@ -77,9 +77,7 @@ restArgs函数代替了es6写法中的 ... 符号，并添加了可以指定从�
     var fixFun = restArguments(add,2);
     fixFun(1, 2, 3, 4, 5);//参数中第三个索引位起固定，所以传递给add函数的参数为(1, 2, [3, 4, 5])
 ##_.partial函数
-    
+    _.partial
     function add(a, b, c) {
         return a + b + c;
     }
-
-    var addOne = partial(add, 1);
