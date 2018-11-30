@@ -1,4 +1,4 @@
-#jQuery的链式调用
+# jQuery的链式调用
 链式调用可以理解为，每个函数为一个"操作"，需要什么"操作"就调用并返回"操作"之后的"结果"，并能连续调用多个"操作"。实现代码类似以下：
 
     (function(){ 
@@ -21,7 +21,7 @@
             return new JQuery(selDom);
         }
     })()
-#_.chain、chainResult的链式调用
+# _.chain、chainResult的链式调用
 在上面的JQuery中返回this来支持链式写法，方便链式调用。而underscore则用来函数(_.chain、chainResult)来返回的 _(obj) 实例对象支持链式写法。
 
     _.chain = function (obj) {
@@ -56,7 +56,7 @@ chainResult函数的作用犹如JQuery返回的this。
 
 **链式调用调用的时_.prototype对象上的方法**
 
-#cb、optimizeCb 函数。
+# cb、optimizeCb 函数。
 建议和_.map方法断点调试。
 
 cb函数为不同状态，返回要执行的函数。cb函数源码：
@@ -74,21 +74,21 @@ context：执行cd回调函数的上下文。
 
 argCount：optimizeCb函数中的不同情况处理。
 
-####状态一：_.iteratee函数被自定义时，cb直接返回自定义的函数。
+#### 状态一：_.iteratee函数被自定义时，cb直接返回自定义的函数。
 
     if (_.iteratee !== builtinIteratee) return _.iteratee(value, context);
     
     _.iteratee = builtinIteratee = function(value, context) {
         return cb(value, context, Infinity);
       };
-####状态二：当value为null时cb返回_.identity函数。
+#### 状态二：当value为null时cb返回_.identity函数。
 
     if (value == null) return _.identity;
     
     _.identity = function(value) {
         return value;
     };
-####状态三：当value为fucntion时cb返回optimizeCb函数的返回值。
+#### 状态三：当value为fucntion时cb返回optimizeCb函数的返回值。
 
     if (_.isFunction(value)) return optimizeCb(value, context, argCount);
     
@@ -110,9 +110,9 @@ argCount：optimizeCb函数中的不同情况处理。
           return func.apply(context, arguments);
         };
       };
-######(1)当context没有指定，返回value函数，不指定context。
+###### (1)当context没有指定，返回value函数，不指定context。
 
-######(2)当context指定了，argCount默认为3，也可以自定义为（1，3，4）。
+###### (2)当context指定了，argCount默认为3，也可以自定义为（1，3，4）。
     
     //argCount为1时，optimizeCb返回：
     function（value）{
@@ -133,7 +133,7 @@ argCount：optimizeCb函数中的不同情况处理。
     function() {
       return func.apply(context, arguments);
     };
-####状态四：当value值为object并且不为Array时，返回_.matcher函数的返回值。
+#### 状态四：当value值为object并且不为Array时，返回_.matcher函数的返回值。
     
     if (_.isObject(value) && !_.isArray(value)) return _.matcher(value);
     
@@ -154,7 +154,7 @@ argCount：optimizeCb函数中的不同情况处理。
         }
         return true;
     };
-####状态五：value为基本类型、数组时，返回_.property函数的返回值。
+#### 状态五：value为基本类型、数组时，返回_.property函数的返回值。
 这时value为path(路径)，路径为查找obj对象中某个属性的路径如：obj.shap.circle.area --> obj , ["shap", "circle", "area"]
 
     _.property = function(path) {
