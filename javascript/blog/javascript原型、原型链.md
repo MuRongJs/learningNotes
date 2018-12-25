@@ -1,7 +1,7 @@
 # 原型、原型链
 **每个函数都会有prototype属性**
 
-![](https://github.com/MuRongJs/learningNotes/images/javaScript_prototype_prototypeChain.png)
+![](https://github.com/MuRongJs/learningNotes/tree/master/images/javaScript_prototype_prototypeChain.png)
 
 关于实例对象与原型的关系，两者为委托关系，并没有拷贝原型上的属性，只是在两者创建了练习，产生了原型链。
 
