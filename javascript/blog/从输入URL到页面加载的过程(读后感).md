@@ -58,9 +58,14 @@
 * 其它
 * 总结
 # 为什么说知识体系如此重要
-**总结:**知识体系化后，对一个问题能有浅到深的解答，会更全面，可以不断的往事情的本质挖掘。
+**总结**：知识体系化后，对一个问题能有浅到深的解答，会更全面，可以不断的往事情的本质挖掘。
 ## 例子
 * getComputedStyle
     * getComputedStyle返回元素最终计算出的css属性值，可以通过window.getComputedStyle和document.defaultView.getComputedStyle调用。
     * 可以举出获取元素高度和背景色，来推断出输出css属性值为当前元素计算的值。
     * getComputedStyle会引起回流，因为它需要获取祖先节点的一些信息来进行计算，产生回流引起性能问题。offsetXXX，scrollXXX，clientXXX，currentStyle等等都能产生回流问题。
+* visibility: hidden 和 display: none的区别
+    * 前者隐藏占据位置，后者隐藏不占据位置。
+    * display由于隐藏后不占据位置，所以造成dom树的改变，会引起回流，代价比加大。
+    * 当一个页面某个元素经常需要切换display时如何优化，一般会用复合层优化，或者要求低一点用absolute让其脱离普通文档流也行。然后可以将话题引到普通文档流，absolute文档流，复合图层的区别，
+    * 再进一步可以描述下浏览器渲染原理以及复合图层和普通图层的绘制区别（复合图层单独分配资源，独立绘制，性能提升，但是不能过多，还有隐式合成等等）
