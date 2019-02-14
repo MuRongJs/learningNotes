@@ -76,5 +76,77 @@ align-item属性定义项目在交叉轴上如何对齐。**以下情况（�
 * center:交叉轴的中点对齐
 * baseline:项目的第一行文字的基线对齐
 * stretch（默认值）:如果项目未设置高度或设置为auto，将占忙整个容器的高度。
+## align-content属性
+align-content属性定义多根轴线的对齐方式，当只有一根轴线的时候不起走用。（轴线以行为单位）
+```
+    .box {
+        align-content: flex-start | flex-end | center | space-between | space-around | stretch;
+    }
+```
+* flex-start: 与交叉轴的起点对齐
+* flex-end: 与交叉轴的终点对齐
+* center: 与交叉轴的中点对齐
+* space-between: 与交叉轴的两端对齐，轴线之间的间隔平均分布。
+* space-around: 每条轴线两侧的间隔相等，所以每条轴线的间隔比轴线与边框的间隔大一倍。
+* stretch（默认值）:轴线占满整个交叉轴。
+# 项目的属性
+以下6种属性是设置在项目上的
+```
+    1、order
+    2、flex-grow
+    3、flex-shrink
+    4、flex-basis
+    5、flex
+    6、align-self
+```
+## order属性
+order属性定义项目的排列顺序，数值越小，排列越靠前，默认值为0。
+```
+    .item {
+        order:<integer>
+    }
+```
+## flex-grow属性
+flex-grow属性定义项目放大比例，默认情况为0，如果存在剩余空间，也不放大。
+```
+    .item{
+        flex-grow:<number>
+    }
+```
+flex-grow设置为1时，如果有剩余空间的条件下，将剩余空间等分。如果某个项目为2，其它项目为1，则前者占用的剩余空间比后者占用的剩余空间多一倍。
+## flex-shrink属性
+flex-shrink属醒定义了项目的缩小比例，如果空间不够，该项目缩小。
+```
+    .item {
+        flex-shrink:<number>
+    }
+```
+如果所有项目的flex-shrink属性都为1，当空间不足时，都将等比例缩小。如果一个项目的flex-shrink属性为0，其他项目都为1，则空间不足时，前者不缩小。
 
+负值对该属性无效。
+## flex-basis属性
+flex-basis属性定义了分配多余空间前，项目占据主轴空间。浏览器通过该属性计算主轴是否有多余空间。它的默认值为auto，即项目的本来大小。
+```
+    .item {
+        flex-basis: <length> | auto;
+    }
+```
+如果项目设置了flex-basis属性值，则项目占据固定空间。
+## flex属性
+flex属性是flex-grow、flex-shrink、flex-basis的简写，默认值为 0 1 auto。后两个属性可选。
+```
+    .item {
+    flex: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+    }
+```
+该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)。
 
+建议优先使用这个属性，而不是单独写三个分离的属性，因为浏览器会推算相关值。
+## align-self属性
+align-self属性允许单个项目与其它项目不一样的对齐方式，可以覆盖align-items属性。默认值为auto，表示继承父元素的align-items属性，如果没有父元素，则等同于stretch。
+```
+    .item {
+        align-self: auto | flex-start | flex-end | center | baseline | stretch;
+    }
+```
+该属性有六个值，除了auto属性与align-items不一样，其它与align-items属性一致。
