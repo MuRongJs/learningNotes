@@ -194,6 +194,21 @@ http协议本质是tcp/ip，http协议进行3次握手建立连接，4次挥手�
 * Referer:该页面的来源URL(使用所有类型的请求，会精确到详细页面地址，CSRF拦截常用到这个字段)
 * User-Agent:用户客户端的一些必要信息，如UA头部等
 响应头部部分（Response Headers）
+* Access-Control-Allow-Headers:服务器允许的请求Headers
+* Access-Control-Allow-Methods:服务端允许的请求方法
+* Access-Control-Allow-Origin:服务端允许的请求Origin头部（譬如*）
+* Content-Type:服务端返回实体内容类型
+* Date:数据从服务器发送的时间
+* Cache-Control:告诉浏览器或其它客户，什么环境可以安全的缓存文档
+* Last-Modified:请求资源最后的修改时间
+* Expires:在有效缓存期外，不在缓存。
+* Max-age:客户端的本地资源应该缓存多少秒，开启了Cache-Control后有效
+* ETag:请求变量的实体标签的当前值
+* Set-Cookie:设置和页面关联的cookie，服务端通过这个头部把cookie传给客户端
+* Keep-Alive：如果客户端有keep-alive，服务端也会有响应
+* Server：服务器的一些相关信息
+### 请求实体/响应实体
+
 
 
 
