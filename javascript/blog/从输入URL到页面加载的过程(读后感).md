@@ -215,3 +215,9 @@ http请求，除了头部，还有消息实体。
 CRLF（Carriage-Return Line-Feed），意思是回车换行，一般作为分隔符存在，请求头和实体消息之间有一个CRLF分隔，响应头部和响应实体之间用一个CRLF分隔。
 ## Cookie以及优化
 Cookie是浏览器等一种本地存储方式，一般用来客户端和服务端进行通信、校验身份，结合服务端的seesion进行使用。
+
+Cookie的生成:登录时，服务器会生成一个session，session中有登录者的信息、sessionId（相当于登陆者在服务器中的key），服务器在登录页面写入Cookie，浏览器本地就有了Cookie值，以后访问同域名下的页面时，自动带上Cookie，自动校验，在有效期内无需二次登录。
+* 通过设置httponly可以避免通过js来进行设置
+* 可以对Cookie进行加密。
+
+### Cookie优化
