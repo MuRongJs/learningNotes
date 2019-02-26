@@ -258,4 +258,37 @@ SSL/TLS的握手流程，如下（简述）:
     2、服务端选中一组加密方法和Hash算法，回复一个随机数---Sever random，并将表示自己身份的证书发给浏览器（证书内包含了网站的地址，非对称加密的公钥，证书颁发机构等信息）
     3、浏览器收到服务端的证书后:
         * 检验证书的合法性（颁发机构是否合法、证书包含的网站是否是和正在访问的一样）
-        * 接收到证书后（不管信任不信任），浏览器会生产新的随机数---premaster secret，
+        * 接收到证书后（不管信任不信任），浏览器会生产新的随机数---premaster secret，证书中的公钥和加密方法加密‘premaster secret’，发送给服务器。
+        * 利用Client random、Sever random和premaster secret通过一定的算法生成的http链接传输的对称加密key-‘session key’
+        * 使用约定好的HASH算法计算握手消息，并使用之前生成的“session key”对消息进行加密，最后将之前生成的所用消息发送给服务器。
+    4、服务端收到浏览器的回复
+        * 利用已知的加解密方式与自己的私钥进行解密，获取到‘premaster secret’
+        * 和浏览器相同规则生成`session key`
+        * 使用`session key`解密浏览器发来的握手消息，并验证Hash是否与浏览器发来的一致
+        * 使用`session key`加密一段握手消息，发送给浏览器
+    5、 浏览器解密并计算握手消息的HASH，如果与服务端发来的HASH一致，此时握手过程结束，
+之后所有的https通信数据将由之前浏览器生成的session key并利用对称加密算法进行加密
+[图解SSL/TLS协议](http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html)
+# http缓存
+http缓存对于交互性能有很大到提升。
+## 强缓存与弱缓存
+    * 强缓存（200 from cache）时，浏览器判断本地缓存是否过期，未过期直接使用，不需发起http请求。
+    * 弱缓存（304 from cache）时，浏览器会服务器发送请求进行判断缓存是否过期，未过期，使用本地缓存。
+对于强缓存，在未过期时，必须更改资源路径才能发起新的请求。
+## 缓存头部简述
+强缓存和协议缓存的是通过不同的http头部控制的。
+
+    * 强缓存: Cache-control/Max-Age (http1.1)、Pragma/Expires http1.0）
+    * 协议缓存: If-None-Match/E-tag (http1.1)、If-Modified-Since/Last-Modified (http1.0)
+## 头部的区分
+# 解析页面流程
+在浏览器获取到html后，浏览器进行解析、渲染
+## 流程的简述
+    1、解析HTML，构建DOM树
+    2、解析CSS规则，生成CSS规则树
+    3、合并DOM树和CSS规则树，生成rander树
+    4、布局render (layout/reflow),负责各个元素的的尺寸、位子的计算
+    5、绘制render树 (paint),绘制页面像素信息
+    6、浏览器将各层的信息发送给GPU，GPU会将各层合成 (composite),显示在屏幕上
+## HTML解析，构建DOM
+
