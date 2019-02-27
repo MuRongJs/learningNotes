@@ -239,6 +239,7 @@ gzip在浏览器支持的情况和服务器开启gzip压缩的情况下，可以
     * keep-alive不会永久保持，会在服务器中配置。要服务端和客户端同时支持才有效。
 ## http2.0
 http1.0与http2.0
+
     * http1.0中，每发一次资源请求就要建立一次tcp/ip连接。当资源数量多时，由于tcp/ip并发数有限制，速度就会减慢。
     * http2.0中，一个tcp/ip请求就可以请求多个资源，也就是一次请求若干个资源，分割成更小的帧请求，速度会明显提升。
 当使用http2.0时，很多http1.0的优化方案就无需使用了（打包成精灵图，静态资源多域名拆分等）
@@ -291,4 +292,8 @@ http缓存对于交互性能有很大到提升。
     5、绘制render树 (paint),绘制页面像素信息
     6、浏览器将各层的信息发送给GPU，GPU会将各层合成 (composite),显示在屏幕上
 ## HTML解析，构建DOM
-
+简述流程: Bytes >> characters >> tokens >> nodes >> DOM
+![](https://dailc.github.io/staticResource/blog/basicKnowledge/whenyouenteraurl/browser_parse_html.png)
+* Conversion转换: 将浏览器得到的Bytes内容转换为字符
+* Tokenizing分词: 浏览器会将字符转换为不同的标记 token
+* Lexing词法分析: 
