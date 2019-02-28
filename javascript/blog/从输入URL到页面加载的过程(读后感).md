@@ -294,6 +294,21 @@ http缓存对于交互性能有很大到提升。
 ## HTML解析，构建DOM
 简述流程: Bytes >> characters >> tokens >> nodes >> DOM
 ![](https://dailc.github.io/staticResource/blog/basicKnowledge/whenyouenteraurl/browser_parse_html.png)
-* Conversion转换: 将浏览器得到的Bytes内容转换为字符
-* Tokenizing分词: 浏览器会将字符转换为不同的标记 token
-* Lexing词法分析: 
+* Conversion转换: 将浏览器得到的Bytes内容转换为字符;Bytes >> characters
+* Tokenizing分词: 浏览器会将字符转换为不同的标记 token;characters >> tokens
+* Lexing词法分析: 得到token，将他们转化为对象，这些对象分别定义他们的属性和规则; tokens >> nodes 
+* DOM构建; nodes >> DOM
+## 生成CSS规则
+简述流程: Bytes >> characters >> tokens >> nodes >> CSSOM;这个流程生成了CSS规则树
+## 构建渲染树
+通过DOM树和CSSOM进行构建渲染树，渲染树和DOM树两者不是严格一一对应。
+## 渲染
+    1、计算CSS样式
+    2、构建render树
+    3、布局，主要定位坐标和大小，是否换行，各种position、overflow、z-index属性
+    4、绘制，将图像绘制出来
+在这过程中都两个概念，回流（Layout/Reflow）和重绘（Repaint）
+
+    * 回流指的是元素的内容、结构、位置或尺寸发生了改变，需要重新进行计算样式、渲染树
+    * 重绘指的是
+
