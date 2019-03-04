@@ -318,6 +318,41 @@ http缓存对于交互性能有很大到提升。
     * Render树发生了改变，比如margin、padding等，发生了改变
     * 窗口resize
     * 获取某些属性，引发回流: 浏览器会对回流进行优化，当回流达到一定数量时才会触发。但是除了render树直接发生改变时浏览器为获取一些属性时，浏览器会直接发生回流，
-        1、当
+
+        1、offset（width、height、top、left）
+        2、scroll（width、height、top、left）
+        3、client（width、height、top、left）
+        4、width、height
+        5、调用getComputedStyle()或者IE的currentStyle
+        6、改变字体会发生回流
+
+回流一定会有重绘，重绘却可以单独出现，为避免开销过大，有以下优化方案:
+
+    * 减少逐项更改样式，最后一次性更改style或则将样式定义为class一次性更新
+    * 避免循环操作dom，可以创建一个documentFragment,进行dom操作，最后再添加到window.document
+    * 避免多次读取offset等属性，无法避免可以将数据缓存到变量里
+    * 使复杂元素脱离文档流，这样回流代价不会很高
+## 渲染--绘制 (简单层和复合层)
+**简单层、复合层补充** [链接](https://segmentfault.com/a/1190000012925872#articleHeader16)
+## Chrome中的调试
+**补充**
+## 资源外链的下载
+当解析html页面的时候会遇到资源链接:CSS样式资源、JS脚本资源、img图片类资源。
+### 遇到外链时的处理
+当遇外链资源时，会单独开启一个线程去下载资源（http1.1每一个资源下载都要开启一个http请求，对应一个tcp/ip）
+### 遇到CSS资源
+CSS资源的处理有几个特点
+
+* CSS下载时，是异步下载，不会阻塞浏览器构建DOM树
+* 但是会阻塞渲染，也就是构建render树时，等CSS下载解析完毕时再继续进行
+* media query 声明的CSS是不会阻塞渲染的
+### 遇到JS脚本资源
+JS脚本资源处理的寄个特点
+
+* 浏览器阻塞，当解析html遇到一个外链脚本时，需要等待下载完成并执行后才能继续解析html
+* 浏览器优化，当背脚本阻塞时，可以继续下载其它资源（并发有上限）。
+* defer和async
+
+
 
 
