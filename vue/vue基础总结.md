@@ -60,9 +60,15 @@
 * 在组件内获取路由传输的值：this.$route.params
 ### 动态路由get传值
 * 其它同上
-* 两点不一样：1、获取传输的值不一样：this.$route.query；2、不需要在配置路由的时候在路由上添加':'冒号
+* 四点不一样：1、获取传输的值不一样：this.$route.query；2、不需要在配置路由的时候在路由上添加':'冒号；3、在router-link上在路由    :to='"/content?id=" + item.aid'；必须在hash模式下才能使用
+**在hash模式下，可以进行路由传值、get传值、编程式传值；在history模式下，不能进行路由传参，能进行编程式传参,而且必须后台支持**
 ### 路由跳转
 除了<router-link to='xxx'></router-link>，还有js跳转的方法，比如:
 * this.$router.push('xxx')
 * this.$router.push({path:'xxx'})
-* 命名路由this.$router.push({name:'xxx',params::{}})：首先在挂载路由的对象上设置name属性，params是传递的参数
+* 命名路由this.$router.push({name:'xxx',params:{}})：首先在挂载路由的对象上设置name属性，params是传递的参数
+### 路由的嵌套
+* 配置子路由，children属性下配置在此组件下的子路由
+* 在父组件内添加 <router-view></router-view>    
+# 基于vue的ui框架（Element ui pc端、MintUi 移动端)
+## 
