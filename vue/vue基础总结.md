@@ -70,5 +70,127 @@
 ### 路由的嵌套
 * 配置子路由，children属性下配置在此组件下的子路由
 * 在父组件内添加 <router-view></router-view>    
+### 路由模块分离
+将路由的代码分离为路由模块，专门作为路由的配置
 # 基于vue的ui框架（Element ui pc端、MintUi 移动端)
-## 
+## 基于Vue的Ui框架
+* Element Ui    基于vue  pc端的UI框架  
+* MintUi         基于vue 移动端的ui框架
+### element UI的使用：
+	1.找官网  http://element.eleme.io/#/zh-CN/component/quickstart
+
+	2.安装  cnpm i element-ui -S         -S表示  --save
+
+	3.引入element UI的css 和 插件
+    `
+
+		import ElementUI from 'element-ui';
+		import 'element-ui/lib/theme-chalk/index.css';
+		Vue.use(ElementUI);
+    `
+	4、*webpack.config.js  配置file_loader      http://element.eleme.io/1.4/#/zh-CN/component/quickstart
+    `
+		  {
+			test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+			loader: 'file-loader'
+	          }
+    `
+
+
+	5.看文档直接使用。
+### element UI组件的单独使用（第一种方法）：
+	1、cnpm install babel-plugin-component -D    
+    2、找到.babelrc 配置文件把
+    `
+		{
+		  "presets": [
+		    ["env", { "modules": false }],
+		    "stage-3"
+		  ]
+		}
+    `
+		改为  注意：
+	`	
+		{
+		  "presets": [["env", { "modules": false }]],
+		  "plugins": [
+		    [
+		      "component",
+		      {
+			"libraryName": "element-ui",
+			"styleLibraryName": "theme-chalk"
+		      }
+		    ]
+		  ]
+		}
+    `
+	3、
+    `
+        import { Button, Select } from 'element-ui';
+
+        Vue.use(Button)
+        Vue.use(Select)
+    `
+element UI组件的单独使用（第二种方法）：
+    `
+        import { Button, Select } from 'element-ui';
+        Vue.use(Button)
+        Vue.use(Select)
+    `
+    引入对应的css
+    `
+        import 'element-ui/lib/theme-chalk/index.css';
+    `
+    如果报错： webpack.config.js  配置file_loader
+    `
+        {
+            test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
+            loader: 'file-loader'
+        }
+    `
+# vuex
+* Vuex解决不同组件的数据共享问题
+* 数据持久化
+## 使用
+* 安装: cnpm install vuex -S
+### state
+state在vuex主要用于存储数据
+### mutations
+mutations主要放的是方法，方法主要用于改变state里面的数据
+`
+import Vue from 'Vue';
+import Vuex from 'vuex';
+
+Vue.use(Vuex);
+
+const state = {
+    count:1
+}
+
+const mutations = {
+     inCount(){
+         state.count++;
+     }
+}
+
+const store = new Vuex.Store({
+    state,
+    mutations
+})
+
+exports default store
+`
+建立好仓库后，暴露stroe。
+* 在需要的组件内引入store，在将store在data层级挂载上
+* 通过this.$store.state.数据来使用store中的state的数据
+* 或者通过this.$store.commit('xxx')触发mutations中定义的方法，也可以在这个方法中改变state中的数据
+
+### getter
+相当于组件内的计算属性
+`
+const getters = {
+    computedCount: (state.count) => {
+        return start.count*2;
+    }
+}
+`
