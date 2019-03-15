@@ -178,7 +178,7 @@ const store = new Vuex.Store({
     mutations
 })
 
-exports default store
+export default store
 `
 建立好仓库后，暴露stroe。
 * 在需要的组件内引入store，在将store在data层级挂载上
