@@ -101,16 +101,13 @@
 ### element UI组件的单独使用（第一种方法）：
 	1、cnpm install babel-plugin-component -D    
     2、找到.babelrc 配置文件把
-    `
 		{
 		  "presets": [
 		    ["env", { "modules": false }],
 		    "stage-3"
 		  ]
 		}
-    `
-		改为  注意：
-	`	
+		改为  注意：	
 		{
 		  "presets": [["env", { "modules": false }]],
 		  "plugins": [
@@ -123,31 +120,22 @@
 		    ]
 		  ]
 		}
-    `
 	3、
-    `
         import { Button, Select } from 'element-ui';
 
         Vue.use(Button)
         Vue.use(Select)
-    `
 element UI组件的单独使用（第二种方法）：
-    `
         import { Button, Select } from 'element-ui';
         Vue.use(Button)
         Vue.use(Select)
-    `
     引入对应的css
-    `
         import 'element-ui/lib/theme-chalk/index.css';
-    `
     如果报错： webpack.config.js  配置file_loader
-    `
         {
             test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
             loader: 'file-loader'
         }
-    `
 # vuex
 * Vuex解决不同组件的数据共享问题
 * 数据持久化
