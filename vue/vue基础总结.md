@@ -85,7 +85,7 @@
 		import ElementUI from 'element-ui';
 		import 'element-ui/lib/theme-chalk/index.css';
 		Vue.use(ElementUI);
-	4、*webpack.config.js  配置file_loader      http://element.eleme.io/1.4/#/zh-CN/component/quickstart
+	4、webpack.config.js  配置file_loader      http://element.eleme.io/1.4/#/zh-CN/component/quickstart
 		  {
 			test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
 			loader: 'file-loader'
