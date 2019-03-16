@@ -82,19 +82,14 @@
 	2.安装  cnpm i element-ui -S         -S表示  --save
 
 	3.引入element UI的css 和 插件
-    `
-
 		import ElementUI from 'element-ui';
 		import 'element-ui/lib/theme-chalk/index.css';
 		Vue.use(ElementUI);
-    `
 	4、*webpack.config.js  配置file_loader      http://element.eleme.io/1.4/#/zh-CN/component/quickstart
-    `
 		  {
 			test: /\.(eot|svg|ttf|woff|woff2)(\?\S*)?$/,
 			loader: 'file-loader'
 	          }
-    `
 
 
 	5.看文档直接使用。
