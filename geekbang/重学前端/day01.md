@@ -9,12 +9,19 @@
 
 **建立知识架构、追本溯源**
 
-# JavaScript
-![](https://raw.githubusercontent.com/MuRongJs/learningNotes/master/images/geekJavaScriptStructure.jpg)
-建立JavaScript的知识架构
+![](https://raw.githubusercontent.com/MuRongJs/learningNotes/master/images/geekWebFramework.jpg)
 
-* 主线:按照一定的词法和语法，表达一定的语义，从而操作运行时
-# HTML和CSS
-![](https://raw.githubusercontent.com/MuRongJs/learningNotes/master/images/geekHtmlCssStructure.jpg)
-* HTML按照功能和语言来划分他们的知识
+### javascript
+从javascript中以以下形式去思考:用一定的词法和语法，表示一定的语义，从而操作运行时。
 
+### HTML和CSS
+HTML以以下形式去思考:元素（文档元信息标签、语义化标签、替换性媒体标类签、表单类标签）、语言机制（实体、命名空间）
+
+CSS以以下形式去思考: 语法方面(@rule、选择器、单位)、功能方面(布局--弹性布局和正常流等、绘制--图形和文字、交互--动画和其它交互)
+### 浏览器的实现原理和API
+实现原理以以下形式去思考:解析、构建DOM树、计算CSS、渲染和合成、绘制。
+
+API:由事件、DOM、CSSOM、API
+
+### 前端工程实践
+性能、工具链、持续集成、搭建系统、架构和基础库
