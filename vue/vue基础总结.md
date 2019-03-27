@@ -163,7 +163,7 @@ const store = new Vuex.Store({
 
 export default store
 `
-建立好仓库后，暴露stroe。
+建立好仓库后，暴露store。
 * 在需要的组件内引入store，在将store在data层级挂载上
 * 通过this.$store.state.数据来使用store中的state的数据
 * 或者通过this.$store.commit('xxx')触发mutations中定义的方法，也可以在这个方法中改变state中的数据
