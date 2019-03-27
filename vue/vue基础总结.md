@@ -139,7 +139,7 @@ element UI组件的单独使用（第二种方法）：
 ### state
 state在vuex主要用于存储数据
 ### mutations
-mutations主要放的是方法，方法主要用于改变state里面的数据
+mutations主要放的是方法，方法主要用于改变state里面的数据，必须为同步函数
 `
 import Vue from 'Vue';
 import Vuex from 'vuex';
@@ -167,9 +167,10 @@ export default store
 * 在需要的组件内引入store，在将store在data层级挂载上
 * 通过this.$store.state.数据来使用store中的state的数据
 * 或者通过this.$store.commit('xxx')触发mutations中定义的方法，也可以在这个方法中改变state中的数据
+* mapMutations可以将组件中的methods映射为store.commit
 
 ### getter
-相当于组件内的计算属性
+相当于组件内的计算属性，如下为在vuex中注册
 `
 const getters = {
     computedCount: (state.count) => {
@@ -177,3 +178,84 @@ const getters = {
     }
 }
 `
+在组件内计算属性中访问-->属性访问
+`
+computed:{
+  xxx(){
+    this.$store.getter.xxx
+  }
+}
+
+store.getter.xxx
+`
+在vuex注册时可以在getter中可以接受其它getter作为第二个参数
+`
+const getters = {
+    computedCount: (state.count, getters) => {
+        return getters.baseNum * start.count * 2;
+    },
+    baseNum: (state.num) => {
+        return state.num
+    }
+}
+`
+也可以通过返回一个方法进行访问getters属性，不会缓存进原数据
+`
+//vuex
+const getters= {
+    filterToDoList: (state.list) => (id) => {
+      return state.list.filter( item => item.id === id);
+    }
+}
+//组件
+computed{
+    storeList (){
+      return this.$store.getters(3);
+    }
+}
+`
+mapGetters 辅助函数,作用是将getters中的属性混入进computed中
+`
+  import { mapGetters } form 'vuex'
+
+  computed{
+    ...mapGetters([
+      xxx,
+      xxx,
+      xxx,
+      xxx
+    ])
+  }
+//可以通过修改名字来访问
+  computed{
+    ...mapGetters({
+      xxx: xxx
+    })
+  }
+`
+# action
+action提交的是mutation，不是直接改变状态；action中可以有任意个异步操作。
+
+在store中注册action
+`
+  action:{
+    xxx({commit}){
+      commit('xxx')
+    }
+  }
+`
+
+分发actions，通过store.dispatch('xxx')方法触发;通过mapActions方法来将actions中的方法映射入methods:
+
+`
+  import { mapActions } from 'vuex'
+
+  methods:{
+    mapAction([
+      xxx,
+      xxx,
+      xxx
+    ])
+  }
+`
+通过store.dispathch方法可以进行异步并组合多个action事件。
