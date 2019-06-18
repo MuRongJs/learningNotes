@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>flex</title>
+	<style type="text/css">
+		/*容器中的属性*/
+		.test01{
+			color: white;
+		}
+		.test01 .flex{		
+			display: flex;
+			/*flex-direction描述容器中的主轴方向*/
+			flex-direction:row;/*默认值，描述主轴由左到右*/
+			flex-direction:row-reverse;/*主轴由右到左*/
+			flex-direction:column;/*主轴由上到下*/
+			flex-direction:column-reverse;/*主轴由下到上*/
+			/*flex-wrap描述容器中的itemd的换行属性*/
+			flex-wrap: nowrap;/*默认值，不换行*/
+			flex-wrap: wrap;/*换行*/
+			flex-wrap: wrap-reverse;/*换行，第一行在下面*/
+			flex-flow: row wrap-reverse;/*flex-flow属性是flex-direction和flex-wrap两个属性的简写*/
+			/*justify-content属性用来定义在主轴的对齐方式*/
+			justify-content: flex-start;/*默认值，以主轴的起点进行对齐*/
+			justify-content: flex-end;/*以主轴的终点进行对齐*/
+			justify-content: center;/*项目居中进行对齐*/
+		}
+		.test01 .flex *:nth-child(2n+1){
+			background-color: red;
+		}
+		.test01 .flex *:nth-child(2n){
+			background-color: black;
+		}
+	</style>
+</head>
+<body>
+	<div class="test01">
+		<div class="flex">
+			<div>1111111设计数据库存储方式变更，客户号需要存储，看是否新增字段还是需要更改组装方式</div>
+			<div>222222设计数据库存储方式变更，三级码值，看是否新增三个字段还是需要组装</div>
+			<div>33333设计数据库存储方式变更，三级码值，看是否新增三个字段还是需要组装</div>
+			<div>4444444设计数据库存储方式变更，</div>
+			<div>55555555设计数据库存储方式变更，三级码值，看是否新增三个字段还是需要组装</div>
+			<div>66666666设计数据库存储方式变更，三级码值，看是否新增三个字段还是需要组装</div>
+			<span>777777777777设计数据库存储方式变更，三级码值，看是否新增三个字段还是需要组装</span>
+		</div>
+	</div>
+</body>
+</html>
