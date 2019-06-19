@@ -8,6 +8,7 @@
 			color: white;
 		}
 		.test01 .flex{		
+			height: 500px;
 			display: flex;
 			/*flex-direction描述容器中的主轴方向*/
 			flex-direction:row;/*默认值，描述主轴由左到右*/
@@ -23,12 +24,65 @@
 			justify-content: flex-start;/*默认值，以主轴的起点进行对齐*/
 			justify-content: flex-end;/*以主轴的终点进行对齐*/
 			justify-content: center;/*项目居中进行对齐*/
+			justify-content: space-around;/*每个项目两侧间隔相等*/
+			justify-content: space-between;/*容器中项目两端对齐，项目之间间隔相等*/
+			/*align-items属性定义项目在交叉轴上的对齐方式*/
+			align-items: stretch;/*默认值，项目未设置高度时，项目高度将占满容器*/
+			align-items: flex-start;/*以交叉轴的起点对齐*/
+			align-items: flex-end;/*以交叉轴的终点对齐*/
+			align-items: center;/*交叉轴居中对齐*/
+			align-items: baseline;/*项目在交叉轴上的第一行文字的基线对齐*/
+			/*align-content定义了多根轴线的对齐方式，在交叉轴上的对齐方式*/
+			align-content: flex-start;/*与交叉轴上的起点对齐*/
+			align-content: flex-end;/*与交叉轴上的终点对齐*/
+			align-content: center;/*在交叉轴居中对齐*/
+			align-content: space-around;/*在交叉轴每个项目两侧间隔相等*/
+			align-content: space-between;/*在交叉轴两端对齐，项目之间间隔相等*/
 		}
 		.test01 .flex *:nth-child(2n+1){
 			background-color: red;
+			order:3;
 		}
 		.test01 .flex *:nth-child(2n){
 			background-color: black;
+		}
+		.test02{
+			color: white;
+		}
+		.test02 .flex{
+			display:inline-flex;
+			/*flex-wrap: wrap;*/
+		}
+		.test02 .flex *:nth-child(2n+1){
+			background-color: red;
+			/*order属性作用于项目元素上，用来设置排列的顺序*/
+			order: 2;
+			/*flex-grow属性作用于项目元素上，用来分配项目在剩余空间上的占比*/
+			flex-grow: 1;
+			/*flex-shrink定义了空间不足时项目的缩小比例*/
+			/*flex-basis定义项目占据主轴的空间(分配多余空间之前)*/
+			flex-basis: 100px
+			/*flex是flex-grow、flex-basis、flex-shrink的缩写*/
+			flex：1
+			/*align-self用来定义单个项目的align-items的对齐方式*/
+		}
+		.test02 .flex *:nth-child(2n){
+			background-color: black;
+			flex-shrink: 1;
+
+		}
+		/*flex布局实践*/
+		.test03 {
+			width: 100px;
+			height: 100px;
+			border-radius: 10px;
+			background: #CCCCCC;
+		}
+		.test03 span{
+			width: 20px;
+			height: 20px;
+			border-radius: 10px;
+			background: red;
 		}
 	</style>
 </head>
@@ -43,6 +97,21 @@
 			<div>66666666设计数据库存储方式变更，三级码值，看是否新增三个字段还是需要组装</div>
 			<span>777777777777设计数据库存储方式变更，三级码值，看是否新增三个字段还是需要组装</span>
 		</div>
+	</div>
+	<h1>项目上的属性</h1>
+	<div class="test02">
+		<div class="flex">
+			<div>1111111</div>
+			<div>222222</div>
+			<div>33333</div>
+			<div style="flex-grow:2">4444444</div>
+			<div>55555555</div>
+			<div>66666666</div>
+			<span>777777777777</span>
+		</div>
+	</div>
+	<div class="test03">
+		<span></span>
 	</div>
 </body>
 </html>

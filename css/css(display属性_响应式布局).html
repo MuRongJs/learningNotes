@@ -139,7 +139,29 @@
     .threeLayout01 .center{
         padding: 0px 50px 0px 200px;
     }
+    /*flex三栏布局*/
+    .threeLayouto2 {
+        display: flex;
+    }
 
+    .threeLayouto2 .center{
+        height: 100px;
+        background-color: black;
+        flex-grow: 1;
+        order: 2;
+    }
+    .threeLayouto2 .left{
+        height: 100px;
+        background-color: yellow;
+        flex-basis: 200px;
+        order: 1;
+    }
+    .threeLayouto2 .right{
+        height: 100px;
+        background-color: red;
+        flex-basis: 50px;
+        order: 3;
+    }
     </style>
 </head>
 
@@ -168,10 +190,22 @@
     <!-- 布局三栏-双飞翼 -->
     <div class="threeLayout01">
         <div class="center-container">
-            <div class="center">1111111111111111111111111111111dd11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</div>
+            <div class="center">1111111111111111111111111111111dd111111111111111111111111</div>
         </div>
-        <div class="left">1111111111111111111111111111111dd11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</div>
-        <div class="right">1111111111111111111111111111111dd11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111</div>
+        <div class="left">1111111111111111111111111111111dd1111111111111111111111111111111111111111111</div>
+        <div class="right">111111111111111111111111111111111111111111111</div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- 三栏布局-flex -->
+    <div class="threeLayouto2">
+        <div class="center"></div>
+        <div class="left"></div>
+        <div class="right"></div>
     </div>
 </body>
 </html>
