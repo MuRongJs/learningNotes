@@ -67,10 +67,65 @@
 			border-radius: 100% 0 0
 		}
 		.border-radius .NOminW04{
+			width: 0px;
+			margin: auto;
 			border-top: 50px solid #FFB5BF;
 			border-left: 50px solid #000000;
-			border-top: 50px solid #FFB5BF;
-			border-left: 50px solid #000000;
+			border-bottom: 50px solid #FFB5BF;
+			border-right: 50px solid #000000;
+		}
+		.border-radius .NOminW05{
+			width: 0px;
+			margin: auto;
+			border-top: 50px solid transparent;
+			border-left: 74px solid #000000;
+			border-bottom: 50px solid transparent;
+		}
+		.border-radius .bubble{
+			width: 500px;
+			height: 150px;
+			margin: auto;
+			position: relative;
+		}
+		.border-radius .NOminW06{
+			width: 300px;
+			height: 80px;
+			margin: auto;
+			border: 5px solid #FFB5BF;
+		}
+		.border-radius .NOminW07{
+			width: 0px;
+			margin: auto;
+			border-right: 30px solid transparent;
+			border-left: 30px solid transparent;
+			border-top: 25px solid #FFB5BF;
+		}
+		.border-radius .NOminW08{
+			width: 0px;
+			margin: auto;
+			border-right: 30px solid transparent;
+			border-left: 30px solid transparent;
+			border-top: 25px solid #cccccc;
+			position: absolute;
+			left: 50%;
+			top: 95px;
+			transform: translate(-50%, -50%);
+		}
+		/* box-shadow属性
+		h-shadow:水平阴影，正值向右，负值向左(必输)
+		v-shadow:垂直阴影，正值向下，负值向上(必输)
+		blur:模糊半径(选填)
+		spread:阴影的尺寸(选填)
+		color:阴影的颜色(选填)
+		inset:设置阴影是内部还是外部 */
+		.shadow-center{
+			height: 100px;
+		}
+		.shadow-center .box{
+			margin: auto;
+			width: 50px;
+			height: 50px;
+			box-shadow: 3px 5px 40px 3px blue;
 		}
 	</style>
 </head>
@@ -94,6 +149,21 @@
 		<div class="minW03">	
 		</div>
 		<div class="NOminW04">	
+		</div>
+		<div class="NOminW05">	
+		</div>
+		<div class="bubble">
+			<div class="NOminW06">	
+			</div>
+			<div class="NOminW07">	
+			</div>
+			<div class="NOminW08">	
+			</div>
+		</div>
+	</div>
+	<div class="shadow-center">
+		<div class="box">
+
 		</div>
 	</div>
 </body>
