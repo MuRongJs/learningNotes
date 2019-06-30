@@ -1,0 +1,127 @@
+<html>
+
+<head>
+    <title>css选择器</title>
+    <!-- 简单选择器 -->
+    <style>
+        /* xml命名规则 */
+        @namespace html url(http://www.w3.org/1999/xhtml);
+
+        /* 全体选择器 */
+        html|* {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        /* 类型选择器 */
+        html|header {
+            height: 6rem;
+            background-color: #00ffff6b;
+        }
+
+        /* id选择器、class选择器*/
+        #content {}
+
+        #content::after {
+            clear: both;
+            content: '';
+            height: 0;
+            visibility: hidden;
+            display: block;
+        }
+
+        #article {
+            width: 80%;
+            height: 30rem;
+            margin-left: 20%;
+            float: left;
+            background-color: #eeeeee;
+        }
+
+        .aside {
+            width: 20%;
+            height: 30rem;
+            margin-left: -100%;
+            float: left;
+            background-color: bisque;
+        }
+
+        /* 属性选择器[attr] */
+        /* 
+            [attribute]	用于选取带有指定属性的元素。
+            [attribute=value]	用于选取带有指定属性和值的元素。
+            [attribute~=value]	用于选取属性值中包含指定词汇的元素。
+            [attribute|=value]	用于选取带有以指定值开头的属性值的元素，该值必须是整个单词。
+            [attribute^=value]	匹配属性值以指定值开头的每个元素。
+            [attribute$=value]	匹配属性值以指定值结尾的每个元素。
+            [attribute*=value]	匹配属性值中包含指定值的每个元素。
+             */
+        [href="http://www.baidu.com"] {
+            color: red;
+            list-style: none;
+        }
+
+        [class^="font5"] {
+            font-family: Verdana, Geneva, Tahoma, sans-serif
+        }
+
+        [class|="font5"] {
+            font-weight: 600;
+        }
+
+        [class$="size"] {
+            font-size: 2px;
+        }
+
+        [class~="blue"] {
+            background: turquoise;
+        }
+
+        [target~="turquoise"] {
+            background: turquoise;
+        }
+
+        [target*="t"]:visited {
+            color: darkgray;
+        }
+
+        /* HTMLUnknownElement在html5中认为是合法的元素，继承了HTMLElment的方法 */
+        /* 自定义元素中间必须有'-'号，自定义元素不为HTMLUnknownElement元素 */
+        /* :root表示树的根元素，一般表示html节点。但是当scoped css 和 shadow root等场景出现时，更需要:root伪类了 */
+        :root {
+            margin-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <div id="content">
+        <article id="article">
+            <p class="font5-context">第一段内容：111111111111111111111111111111111111</p>
+            <p class="font5contextsize">第二段内容：222222222222222222222222222222222222</p>
+            <p class="font5-context">第三段内容：333333333333333333333333333333333333</p>
+            <p class="font5-context blue size12px">第四段内容：444444444444444444444444444444444444</p>
+            <a href="http://www.baidu.com" target="_bank">百度</a>
+            <a href="http://www.baidu.com" target="_bank turquoise">百度</a>
+        </article>
+        <aside class="aside"></aside>
+    </div>
+    <div>
+        <username></username>
+        <template>
+
+        </template>
+        <style scoped>
+            :root {
+                height: 50px;
+                background: blanchedalmond;
+            }
+        </style>
+    </div>
+</body>
+<script>
+    debugger;
+</script>
+
+</html>
