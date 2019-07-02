@@ -1,0 +1,17 @@
+<template id="headPicture">
+    <style scoped>
+        img{
+            border-radius: 50%;
+        }
+    </style>
+    <img src="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=1840587501,62677872&fm=27&gp=0.jpg" alt="murong的头像">
+</template>
+<script>
+    class HTMLHeadPictureElement extends HTMLElement{
+        constructor(){
+            super();
+            this.innerHTML = document.currentScript.ownerDocument.querySelector('#headPicture');
+        }
+    }
+    customElements.define("murong-icon", HTMLHeadPictureElement);
+</script>
