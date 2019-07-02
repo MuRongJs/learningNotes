@@ -86,8 +86,9 @@
         }
 
         /* HTMLUnknownElement在html5中认为是合法的元素，继承了HTMLElment的方法 */
-        /* 自定义元素中间必须有'-'号，自定义元素不为HTMLUnknownElement元素 */
+        /* 自定义元素中间必须有'-'号，自定义元素不为HTMLUnknownElement元素 ，自定义元素的原型为HTMLElement.prototype*/
         /* :root表示树的根元素，一般表示html节点。但是当scoped css 和 shadow root等场景出现时，更需要:root伪类了 */
+        /* shadow DOM可以通过封装实现复杂的组件 */
         :root {
             margin-left: 5px;
         }
@@ -107,7 +108,7 @@
         </article>
         <aside class="aside"></aside>
     </div>
-    <div>
+    <div class="shadow">
         <username></username>
         <template>
 
@@ -119,9 +120,12 @@
             }
         </style>
     </div>
+    <script>
+        const shadowELeRoot = document.querySelector('.shadow');
+        const shadow = shadowELeRoot.attachShadow({mode: 'open'});
+    </script>
 </body>
 <script>
-    debugger;
 </script>
 
 </html>
