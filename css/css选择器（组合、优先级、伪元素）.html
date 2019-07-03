@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>css选择器（组合、优先级、伪元素）</title>
+    <style>
+        /* 
+            选择器的组合：
+            .a.b 是同时拥有class a 和class b的元素
+            空格 是指符合条件的所有后代节点
+            >    是指符合条件的子节点
+            ~    是指符合条件的同级节点（后面的节点）
+            +    是指同一级节点的下一个节点
+            ||   列选择器，表示选中对应列中符合条件的单元格
+         */
+        .font16.text-center{
+            font-size: 12px;
+            text-align: center;
+        }
+        #space .span{
+            color:aquamarine;
+        }
+        #sonNode>.span{
+            color: brown;
+        }
+        #brother .b~.d{
+            color: cadetblue;
+        }
+        #brother .b+.c{
+            color: cornflowerblue;
+        }
+        /* 
+            伪元素
+            ::first-line 第一行文本
+            ::first-letter
+            ::before
+            ::after
+         */
+         #first-line{
+             width: 50px;
+         }
+         #first-line::first-line{
+             color: darkgrey;
+         }
+    </style>
+</head>
+<body>
+    <p id="font16" class="font16 text-center">这是字体大小为16px，且文字居中的段落</p>
+    <div id="space">
+        <span>第一层span
+            <span class="span">第二层span
+                <span>
+                    第三层span
+                </span>
+            </span>
+        </span>
+    </div>
+    <div id="sonNode">
+        <span>第一层span--firstSon
+            <span class="span">第二次span
+                <span>
+                    第三层span
+                </span>
+            </span>
+        </span>
+        <span class="span">
+            第二层span--secendSon
+        </span>
+    </div>
+    <div id="brother">
+        <p class="a">这是第一个p标签，class为a</p>
+        <p class="b">这是第一个p标签，class为b</p>
+        <p class="c">这是第一个p标签，class为c <span class="d">calss为d</span></p>
+        <p class="d">这是第一个p标签，class为d</p>
+    </div>
+    <div id="first-line">
+        <div>这是一个行段落<p>这是段落里面的一行文字</p></div>
+        <p>啧啧啧啧啧啧啧啧啧啧啧啧啧啧最最最最最最最最最最最最！</p>
+    </div>
+</body>
+</html>
