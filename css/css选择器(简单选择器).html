@@ -45,6 +45,14 @@
             float: left;
             background-color: bisque;
         }
+        /* >选择符是，选择父元素为div的所有p元素; */
+        div>p{
+            border-bottom: 2px solid #eeeeee;
+        }
+        /* +选择同一层级的节点为p标签的元素 */
+        div+p{
+            color: cadetblue;
+        }
 
         /* 属性选择器[attr] */
         /* 
@@ -92,6 +100,45 @@
         :root {
             margin-left: 5px;
         }
+        /* :empty伪类选择器选择没有子节点的元素 */
+        #empty :empty{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+        /* :nth-child、:nth-last-child为函数类伪类，可以通过An+B的方式进行选择 */
+        /* S:nth-of-type的形式是 :nth-child(|An+B|of S); 只选择S*/
+        /* .childEle :nth-child(2n){
+            background-color: antiquewhite;
+        } */
+        .childEle p:nth-of-type(2n){
+            background-color: antiquewhite;
+        }
+        .childEle p:first-child{
+            font-weight: 600;
+        }
+        .childEle p:last-child{
+            font-weight: 600;
+        }
+        strong:only-child{
+            background-color: #ff0000;
+        }
+        /*
+        关于链接行为的伪类选择器
+        :any-link,表示任意的链接，包括a、area、link等标签
+        :link,表示未访问过的链接
+        :visited,表示已经访问过的链接
+        :hover,表示鼠标悬停上在元素的动作
+        :active,激活状态
+        :focus焦点落在元素上
+        :target用于浏览器hash部分所指示的元素
+        */
+        /* 逻辑伪类选择器
+            :not
+         */
+         :not(div){
+             border-top: 1px solid rosybrown;
+         }
     </style>
 </head>
 
@@ -152,8 +199,36 @@
         `
         shadow.appendChild(styles);
     </script>
-    <link rel="import" href="muronghead.html">
-    <murong-icon/>
+    <!-- 自定义元素 -->
+    <link rel="import" href="muronghead.html"></link>
+    <murong-icon></murong-icon>
+    <div id="empty">
+        <div></div>
+    </div>
+    <div class="childEle">
+        <p>111111111111111111</p>
+        <strong>00000000000000000000</strong>
+        <p>222222222222222222</p>
+        <p>333333333333333333</p>
+        <strong>00000000000000000000</strong>
+        <p>444444444444444444</p>
+        <p>555555555555555555</p>
+        <p>666666666666666666</p>
+        <p>777777777777777777</p>
+        <p>888888888888888888</p>
+        <p>999999999999999999</p>
+        <strong>00000000000000000000</strong>
+    </div>
+    <div><strong>这是只有strong子元素的div块</strong></div>
+    <div id="link">
+        <a href="https://github.com/EtherDream/jsproxy">js代理</a>
+        <a href="https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/">canvas图片的跨域问题</a>
+        <a href="https://segmentfault.com/a/1190000015597029">跨域问题</a>
+        <a href="https://time.geekbang.org/column/article/84365">css选择器(普通选择器)</a>
+    </div>
+    <div>
+        <img id="img" src="https://yelloxing.github.io/extrals/csii-clay/clay.png" alt="csii-clay">
+    </div>
 </body>
 <script>
 </script>

@@ -10,7 +10,7 @@
     class HTMLHeadPictureElement extends HTMLElement{
         constructor(){
             super();
-            this.innerHTML = document.currentScript.ownerDocument.querySelector('#headPicture');
+            this.innerHTML = document.currentScript.ownerDocument.querySelector('#headPicture').innerHTML;
         }
     }
     customElements.define("murong-icon", HTMLHeadPictureElement);
