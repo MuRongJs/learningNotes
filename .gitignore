@@ -1,0 +1,4 @@
+bin/pidConfig.txt
+.idea
+.DS_Store
+**/node_modules/**

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<coverage generated="1606235778950" clover="3.2.0">
+  <project timestamp="1606235778951" name="All files">
+    <metrics statements="3" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1" elements="6" coveredelements="5" complexity="0" loc="3" ncloc="3" packages="1" files="2" classes="2"/>
+    <file name="isfever.js" path="/Users/xueyi/Documents/GitHub/long/learningNotes/Engineering/jest/demo01/isfever.js">
+      <metrics statements="2" coveredstatements="2" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+      <line num="2" count="3" type="cond" truecount="2" falsecount="0"/>
+      <line num="5" count="1" type="stmt"/>
+    </file>
+    <file name="jest.config.js" path="/Users/xueyi/Documents/GitHub/long/learningNotes/Engineering/jest/demo01/jest.config.js">
+      <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+      <line num="1" count="0" type="stmt"/>
+    </file>
+  </project>
+</coverage>

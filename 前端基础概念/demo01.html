@@ -1,0 +1,121 @@
+<html>
+  <head>
+    <title>html contextmenu</title>
+    <link rel="stylesheet"
+      href="https://translate.google.cn/translate/releases/twsfe_w_20190603_RC02/r/css/webapp_cn_ltr.css">
+    <script>
+      function bb() {
+        alert("dom上的onload事件")
+      }
+      window.addEventListener("DOMContentLoaded", function (params) {
+        bb()
+      })
+    </script>
+<style>
+  #draggable {
+    width: 200px;
+    height: 20px;
+    text-align: center;
+    background: white;
+  }
+
+  .dropzone {
+    width: 200px;
+    height: 20px;
+    background: blueviolet;
+    margin-bottom: 10px;
+    padding: 10px;
+  }
+  .block{
+    margin: 20px;
+    padding: 20px;
+    border: 10px solid;
+    width: 100px;
+    height: 100px;
+  }
+  .inline{
+    margin: 20px;
+    padding: 20px;
+    border: 10px solid;
+    width: 100px;
+    height: 100px;
+  }
+  .inlineBlock{
+    margin: 20px;
+    padding: 20px;
+    border: 10px solid;
+    width: 100px;
+    height: 100px;
+    display:inline-block;
+  }
+</style>
+  </head>
+  <body onload="aa()">
+    <ul id="myMenu" onload="bb()" style="position: absolute;visibility: hidden;background-color: silver">
+      <li>111</li>
+      <li>222</li>
+      <li>333</li>
+    </ul>
+    <div class="dropzone">
+      <div id="draggable" draggable="true" ondragstart="event.dataTransfer.setData('text/plain',null)">
+        This div is draggable
+      </div>
+    </div>
+    <div class="dropzone" draggable="true"></div>
+    <div class="dropzone"></div>
+    <div class="dropzone"></div>
+    <div class="block">dddd</div>
+    <span class="inline">行内块</span><span class="inline">行内块</span>
+    <div class="block">dddd</div>
+    <div class="inlineBlock">行内块级元素</div>
+    <div class="inlineBlock">行内块级元素</div>
+    <div class="inlineBlock">行内块级元素</div>
+    <div class="inlineBlock">行内块级元素</div><div class="inlineBlock">行内块级元素</div>
+    <script>
+      // window.onload = function (data) {
+      //   alert(JSON.stringify(data));
+      // };
+      function aa() {
+        alert("body上的onload事件");
+        var dragged
+
+        document.addEventListener("dragstart", function (event) {
+        dragged = event.target
+        }, false)
+
+        document.addEventListener("dragover", function (event) {
+        // prevent default to allow drop
+        event.preventDefault()
+        }, false)
+
+        document.addEventListener("drop", function (event) {
+        // prevent default action (open as link for some elements)
+        event.preventDefault()
+        if (event.target.className == "dropzone") {
+        dragged.parentNode.removeChild(dragged)
+        event.target.appendChild(dragged)
+        }
+        }, false)
+      }
+      var menu = document.getElementById('myMenu');
+      document.addEventListener('contextmenu', (event) => {
+        event.preventDefault()
+        menu.style.left = event.clientX + 'px'
+        menu.style.top = event.clientY + 'px'
+        menu.style.visibility = 'visible'
+      }, false)
+      document.addEventListener('click', (event) => {
+        menu.style.visibility = 'hidden'
+      }, false)
+      var script = document.createElement("script");
+      script.addEventListener('hashchange', function eventListener(event) {
+        console.log(JSON.stringify(event))
+      if (event.readyState === 'loaded' || event.readyState === 'complete') { // hack 的手段，浏览器自身的问题
+      script.removeEventListener('hashchange', eventListener)
+      }
+      })
+      script.src = "https://www.gstatic.cn/inputtools/js/ita/inputtools_1.js";
+      document.body.appendChild(script);
+    </script>
+  </body>
+</html>
