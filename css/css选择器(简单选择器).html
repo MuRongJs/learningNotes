@@ -1,0 +1,236 @@
+<html>
+
+<head>
+    <title>css选择器</title>
+    <!-- 简单选择器 -->
+    <style>
+        /* xml命名规则 */
+        @namespace html url(http://www.w3.org/1999/xhtml);
+
+        /* 全体选择器 */
+        html|* {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        /* 类型选择器 */
+        html|header {
+            height: 6rem;
+            background-color: #00ffff6b;
+        }
+
+        /* id选择器、class选择器*/
+        #content {}
+
+        #content::after {
+            clear: both;
+            content: '';
+            height: 0;
+            visibility: hidden;
+            display: block;
+        }
+
+        #article {
+            width: 80%;
+            height: 30rem;
+            margin-left: 20%;
+            float: left;
+            background-color: #eeeeee;
+        }
+
+        .aside {
+            width: 20%;
+            height: 30rem;
+            margin-left: -100%;
+            float: left;
+            background-color: bisque;
+        }
+        /* >选择符是，选择父元素为div的所有p元素; */
+        div>p{
+            border-bottom: 2px solid #eeeeee;
+        }
+        /* +选择同一层级的节点为p标签的元素 */
+        div+p{
+            color: cadetblue;
+        }
+
+        /* 属性选择器[attr] */
+        /* 
+            [attribute]	用于选取带有指定属性的元素。
+            [attribute=value]	用于选取带有指定属性和值的元素。
+            [attribute~=value]	用于选取属性值中包含指定词汇的元素。
+            [attribute|=value]	用于选取带有以指定值开头的属性值的元素，该值必须是整个单词。
+            [attribute^=value]	匹配属性值以指定值开头的每个元素。
+            [attribute$=value]	匹配属性值以指定值结尾的每个元素。
+            [attribute*=value]	匹配属性值中包含指定值的每个元素。
+             */
+        [href="http://www.baidu.com"] {
+            color: red;
+            list-style: none;
+        }
+
+        [class^="font5"] {
+            font-family: Verdana, Geneva, Tahoma, sans-serif
+        }
+
+        [class|="font5"] {
+            font-weight: 600;
+        }
+
+        [class$="size"] {
+            font-size: 2px;
+        }
+
+        [class~="blue"] {
+            background: turquoise;
+        }
+
+        [target~="turquoise"] {
+            background: turquoise;
+        }
+
+        [target*="t"]:visited {
+            color: darkgray;
+        }
+
+        /* HTMLUnknownElement在html5中认为是合法的元素，继承了HTMLElment的方法 */
+        /* 自定义元素中间必须有'-'号，自定义元素不为HTMLUnknownElement元素 ，自定义元素的原型为HTMLElement.prototype*/
+        /* :root表示树的根元素，一般表示html节点。但是当scoped css 和 shadow root等场景出现时，更需要:root伪类了 */
+        /* shadow DOM可以通过封装实现复杂的组件,customElements.define注册标签，需要考虑浏览器兼容问题 */
+        :root {
+            margin-left: 5px;
+        }
+        /* :empty伪类选择器选择没有子节点的元素 */
+        #empty :empty{
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+        /* :nth-child、:nth-last-child为函数类伪类，可以通过An+B的方式进行选择 */
+        /* S:nth-of-type的形式是 :nth-child(|An+B|of S); 只选择S*/
+        /* .childEle :nth-child(2n){
+            background-color: antiquewhite;
+        } */
+        .childEle p:nth-of-type(2n){
+            background-color: antiquewhite;
+        }
+        .childEle p:first-child{
+            font-weight: 600;
+        }
+        .childEle p:last-child{
+            font-weight: 600;
+        }
+        strong:only-child{
+            background-color: #ff0000;
+        }
+        /*
+        关于链接行为的伪类选择器
+        :any-link,表示任意的链接，包括a、area、link等标签
+        :link,表示未访问过的链接
+        :visited,表示已经访问过的链接
+        :hover,表示鼠标悬停上在元素的动作
+        :active,激活状态
+        :focus焦点落在元素上
+        :target用于浏览器hash部分所指示的元素
+        */
+        /* 逻辑伪类选择器
+            :not
+         */
+         :not(div){
+             border-top: 1px solid rosybrown;
+         }
+    </style>
+</head>
+
+<body>
+    <header></header>
+    <div id="content">
+        <article id="article">
+            <p class="font5-context">第一段内容：111111111111111111111111111111111111</p>
+            <p class="font5contextsize">第二段内容：222222222222222222222222222222222222</p>
+            <p class="font5-context">第三段内容：333333333333333333333333333333333333</p>
+            <p class="font5-context blue size12px">第四段内容：444444444444444444444444444444444444</p>
+            <a href="http://www.baidu.com" target="_bank">百度</a>
+            <a href="http://www.baidu.com" target="_bank turquoise">百度</a>
+        </article>
+        <aside class="aside"></aside>
+    </div>
+    <div class="shadow">
+        <a href="https://www.zhangxinxu.com/wordpress/2018/03/htmlunknownelement-html5-custom-elements/" target="_bank">自定义元素</a>
+    </div>
+    <script>
+        const shadowELeRoot = document.querySelector('.shadow');
+        const shadow = shadowELeRoot.attachShadow({ mode: 'open' });
+        const link = document.createElement('a');
+        link.href = shadowELeRoot.querySelector('a').href;
+        link.innerHTML = `<span aria-label="Twitter icon"></span>${shadowELeRoot.querySelector('a').textContent}`;
+        shadow.appendChild(link);
+        const styles = document.createElement("style");
+        styles.textContent = `
+            a, span {
+                vertical-align: top;
+                display: inline-block;
+                box-sizing: border-box;
+            }
+
+            a {
+                height: 20px;
+                padding: 1px 8px 1px 6px;
+                background-color: #1b95e0;    color: #fff;
+                border-radius: 3px;
+                font-weight: 500;
+                font-size: 11px;
+                font-family:'Helvetica Neue', Arial, sans-serif;
+                line-height: 18px;    text-decoration: none;   
+            }
+
+            a:hover {  background-color: #0c7abf; }
+
+            span {
+                position: relative;
+                top: 2px;
+                width: 14px;
+                height: 14px;
+                margin-right: 3px;
+                background: transparent 0 0 no-repeat;
+                background-image: url(data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%2072%2072%22%3E%3Cpath%20fill%3D%22none%22%20d%3D%22M0%200h72v72H0z%22%2F%3E%3Cpath%20class%3D%22icon%22%20fill%3D%22%23fff%22%20d%3D%22M68.812%2015.14c-2.348%201.04-4.87%201.744-7.52%202.06%202.704-1.62%204.78-4.186%205.757-7.243-2.53%201.5-5.33%202.592-8.314%203.176C56.35%2010.59%2052.948%209%2049.182%209c-7.23%200-13.092%205.86-13.092%2013.093%200%201.026.118%202.02.338%202.98C25.543%2024.527%2015.9%2019.318%209.44%2011.396c-1.125%201.936-1.77%204.184-1.77%206.58%200%204.543%202.312%208.552%205.824%2010.9-2.146-.07-4.165-.658-5.93-1.64-.002.056-.002.11-.002.163%200%206.345%204.513%2011.638%2010.504%2012.84-1.1.298-2.256.457-3.45.457-.845%200-1.666-.078-2.464-.23%201.667%205.2%206.5%208.985%2012.23%209.09-4.482%203.51-10.13%205.605-16.26%205.605-1.055%200-2.096-.06-3.122-.184%205.794%203.717%2012.676%205.882%2020.067%205.882%2024.083%200%2037.25-19.95%2037.25-37.25%200-.565-.013-1.133-.038-1.693%202.558-1.847%204.778-4.15%206.532-6.774z%22%2F%3E%3C%2Fsvg%3E);
+            }
+            ;
+        `
+        shadow.appendChild(styles);
+    </script>
+    <!-- 自定义元素 -->
+    <link rel="import" href="muronghead.html"></link>
+    <murong-icon></murong-icon>
+    <div id="empty">
+        <div></div>
+    </div>
+    <div class="childEle">
+        <p>111111111111111111</p>
+        <strong>00000000000000000000</strong>
+        <p>222222222222222222</p>
+        <p>333333333333333333</p>
+        <strong>00000000000000000000</strong>
+        <p>444444444444444444</p>
+        <p>555555555555555555</p>
+        <p>666666666666666666</p>
+        <p>777777777777777777</p>
+        <p>888888888888888888</p>
+        <p>999999999999999999</p>
+        <strong>00000000000000000000</strong>
+    </div>
+    <div><strong>这是只有strong子元素的div块</strong></div>
+    <div id="link">
+        <a href="https://github.com/EtherDream/jsproxy">js代理</a>
+        <a href="https://www.zhangxinxu.com/wordpress/2018/02/crossorigin-canvas-getimagedata-cors/">canvas图片的跨域问题</a>
+        <a href="https://segmentfault.com/a/1190000015597029">跨域问题</a>
+        <a href="https://time.geekbang.org/column/article/84365">css选择器(普通选择器)</a>
+    </div>
+    <div>
+        <img id="img" src="https://yelloxing.github.io/extrals/csii-clay/clay.png" alt="csii-clay">
+    </div>
+</body>
+<script>
+</script>
+
+</html>

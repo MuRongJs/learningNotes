@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .father1{
+        *zoom: 1;
+    }
+    .father1 div{
+        float: left;
+    }
+    .father1:before{
+        content: '';
+        display: table;
+        clear: both;
+    }
+    .father1 .son1{
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+    .father1 .son2{
+        width: 100px;
+        height: 100px;
+        background-color: black;
+    }
+    .father1 .son3{
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+</style>
+<body>
+    <div class="father1">
+        <div class="son1"></div>
+        <div class="son2"></div>
+        <div class="son3"></div>
+    </div>
+</body>
+</html>

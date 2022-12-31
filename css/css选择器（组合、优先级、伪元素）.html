@@ -1,0 +1,99 @@
+<html>
+<head>
+    <title>css选择器（组合、优先级、伪元素）</title>
+    <style>
+        /* 
+            选择器的组合：
+            .a.b 是同时拥有class a 和class b的元素
+            空格 是指符合条件的所有后代节点
+            >    是指符合条件的子节点
+            ~    是指符合条件的同级节点（后面的节点）
+            +    是指同一级节点的下一个节点
+            ||   列选择器，表示选中对应列中符合条件的单元格
+         */
+        .font16.text-center{
+            font-size: 12px;
+            text-align: center;
+        }
+        #space .span{
+            color:aquamarine;
+        }
+        #sonNode>.span{
+            color: brown;
+        }
+        #brother .b~.d{
+            color: cadetblue;
+        }
+        #brother .b+.c{
+            color: cornflowerblue;
+        }
+        /* 
+            伪元素
+            ::first-line 第一行文本
+            ::first-letter 第一个字母
+            ::before  元素内容之前插入虚拟元素
+            ::after   元素内容之后插入虚拟元素
+         */
+         #first-line{
+             width: 100px;
+         }
+         #first-line::first-line{
+             color: darkgrey;
+             text-transform: uppercase;
+         }
+         #first-letter{
+             width: 100px;
+             display:-webkit-box;
+             -webkit-line-clamp:2;
+             -webkit-box-orient: vertical;
+             overflow: hidden;
+         }
+         #first-letter::first-letter{
+             color: darkgrey;
+             text-transform: uppercase;
+             float: left;
+         }
+         #first-letter::before{
+             display: block;
+             content: counter(chapno, upper-roman) "."
+         }
+    </style>
+</head>
+<body>
+    <p id="font16" class="font16 text-center">这是字体大小为16px，且文字居中的段落</p>
+    <div id="space">
+        <span>第一层span
+            <span class="span">第二层span
+                <span>
+                    第三层span
+                </span>
+            </span>
+        </span>
+    </div>
+    <div id="sonNode">
+        <span>第一层span--firstSon
+            <span class="span">第二次span
+                <span>
+                    第三层span
+                </span>
+            </span>
+        </span>
+        <span class="span">
+            第二层span--secendSon
+        </span>
+    </div>
+    <div id="brother">
+        <p class="a">这是第一个p标签，class为a</p>
+        <p class="b">这是第一个p标签，class为b</p>
+        <p class="c">这是第一个p标签，class为c <span class="d">calss为d</span></p>
+        <p class="d">这是第一个p标签，class为d</p>
+    </div>
+    <div id="first-line">
+        <div>This is first-line attribute,on first line is selected status.</div>
+        <p>啧啧啧啧啧啧啧啧啧啧啧啧啧啧最最最最最最最最最最最最！</p>
+    </div>
+    <div id="first-letter">
+        This is first-letter attribute, on first letter i selectd status.
+    </div>
+</body>
+</html>

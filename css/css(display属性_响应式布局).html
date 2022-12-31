@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<head>
+    <title></title>
+    <style type="text/css">
+    .box_1 {
+        height: 100px;
+        width: 100px;
+        text-align: center;
+        background-color: #FFB5BF;
+    }
+
+    .box_2 {
+        height: 100px;
+        width: 100px;
+        text-align: center;
+        background-color: #94E8FF;
+    }
+    .container::after{
+        content: "";
+        display: block;
+        clear: both;
+        visibility: hidden;
+        height: 0;
+    }
+    .float_left {
+        float: left;
+    }
+    .float_right {
+        float: right;
+    }
+    .clear{
+        clear: left;
+    }
+    /*定位*/
+    .relative{
+        width: 500px;
+        height: 500px;
+        position: relative;
+        left: 100px;
+        background-color: red;
+    }
+    .absolute{
+        width: 50px;
+        height: 50px;
+        position: absolute;
+        left: 100px;
+        background-color: black;
+    }
+    /*两栏布局*/
+    .twoLayout .left{
+        background-color: red;
+        width: 100px;
+        height: 100px;
+        display: inline-block;
+    }
+    .twoLayout .right{
+        background-color: yellow;
+        height: 100px;
+        width: calc(100% - 100px);
+        display: inline-block;
+    }
+    /*布局三栏-圣杯布局*/
+    .threeLayout{
+        padding-left: 100px;
+        padding-right: 150px;
+        color: white;
+        word-break: break-all;
+    }
+    .threeLayout::after{
+        content: "";
+        display: block;
+        clear: both;
+        height: 0;
+        visibility: hidden;
+    }
+    .threeLayout .left{
+        width: 100px;
+        height: 200px;
+        margin-left: -100%;
+        background-color: red;
+        float: left;
+        position: relative;
+        left: -100px;
+    }
+    .threeLayout .center{
+        height: 200px;
+        width: 100%;
+        background-color: black;
+        float: left;
+    }
+    .threeLayout .right{
+        width: 150px;
+        height: 200px;
+        margin-left: -150px;
+        background-color: yellow;
+        float: left;
+        position: relative;
+        left: 150px;
+    }
+    /*布局三栏-双飞翼*/
+    .threeLayout01{
+        word-break: break-all;
+        color: white;
+    }
+    .threeLayout01::after{
+        content: "";
+        display: block;
+        clear: both;
+        height: 0;
+        visibility: hidden;
+    }
+    .threeLayout01 .center{
+        height: 100px;
+        background-color: black;
+    }
+    .threeLayout01 .left{
+        width: 200px;
+        height: 100px;
+        background-color: yellow;
+    }
+    .threeLayout01 .right{
+        width: 50px;
+        height: 100px;
+        background-color: red;
+    }
+    .threeLayout01 .center-container,.threeLayout01 .left,.threeLayout01 .right{
+        float: left;
+    }
+    .threeLayout01 .left{
+        margin-left: -100%;
+    }
+    .threeLayout01 .right{
+        margin-left: -50px;
+    }
+    .center-container{
+        width: 100%;
+    }
+    .threeLayout01 .center{
+        padding: 0px 50px 0px 200px;
+    }
+    /*flex三栏布局*/
+    .threeLayouto2 {
+        display: flex;
+    }
+
+    .threeLayouto2 .center{
+        height: 100px;
+        background-color: black;
+        flex-grow: 1;
+        order: 2;
+    }
+    .threeLayouto2 .left{
+        height: 100px;
+        background-color: yellow;
+        flex-basis: 200px;
+        order: 1;
+    }
+    .threeLayouto2 .right{
+        height: 100px;
+        background-color: red;
+        flex-basis: 50px;
+        order: 3;
+    }
+    </style>
+</head>
+
+<body>
+    <!-- 清除浮动 -->
+    <div class="container">
+        <div class="box_1 float_left">box 1</div>
+        <div class="box_2 float_right">box 2</div>
+        <!-- <br clear="all"/> -->
+        <!-- <div class="clear"></div> -->
+    </div>
+    <!-- 相对定位、绝对定位、固定定位、static默认值(正常普通文档流的值) -->
+    <div class="relative">
+        <div class="absolute"></div>
+    </div>
+    <!-- 布局二栏布局 inline-block清除间隙 -->
+    <div class="twoLayout">
+        <div class="left"></div><div class="right"></div>
+    </div>
+    <!-- 布局三栏-圣杯布局 -->
+    <div class="threeLayout">
+        <div class="center">1111111111111111111111111111111d11111111</div>
+        <div class="left">1111111111111111111111111111111dd11111111111111</div>
+        <div class="right">1111111111111111111111111111111dd11111111111111</div>
+    </div>
+    <!-- 布局三栏-双飞翼 -->
+    <div class="threeLayout01">
+        <div class="center-container">
+            <div class="center">1111111111111111111111111111111dd111111111111111111111111</div>
+        </div>
+        <div class="left">1111111111111111111111111111111dd1111111111111111111111111111111111111111111</div>
+        <div class="right">111111111111111111111111111111111111111111111</div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!-- 三栏布局-flex -->
+    <div class="threeLayouto2">
+        <div class="center"></div>
+        <div class="left"></div>
+        <div class="right"></div>
+    </div>
+</body>
+</html>

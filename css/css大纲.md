@@ -45,4 +45,10 @@ BFC（block formatting context）是一个独立的渲染区，让处于BFC的�
 ## 水平垂直居中
 * absolute + transform
 * flex + justify-content + align-items
-
+## block、 inline-block、 inline
+* block:
+    * 每个元素以新的一行开始
+    * 元素宽、高、行高、padding、margin都可以设置
+    * 元素在不设置宽度的时候，默认宽度为父容器宽度的100%
+* inline-block:
+    * 元素宽、高、行高、padding、margin都可以设置
